@@ -1,8 +1,7 @@
-export class Department {
+import { BaseModel } from './base.models';
+
+export class Department extends BaseModel{
     department_id?:number;
-    created_at?:Date;
-    is_active: boolean;
-    updated_at?:Date;
     name: string;
     description: string;
     other:string;

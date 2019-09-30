@@ -1,8 +1,7 @@
-export class UserContact{
+import { BaseModel } from './base.models';
+
+export class UserContact extends BaseModel{
     user_contact_id?:number;
-    created_at?:Date;
-    updated_at?:Date;
-    contact:string;
     user_id?:number;
     user_contact_type_id?:number;
 }

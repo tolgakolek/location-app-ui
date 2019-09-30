@@ -1,8 +1,7 @@
-export class DeviceRooms {
+import { BaseModel } from './base.models';
+
+export class DeviceRooms extends BaseModel{
     device_room_id?:number;
-    created_at?:Date;
-    is_active:boolean;
-    updated_at?:Date;
     device_id:number;
     locationx:number;
     locationy:number;

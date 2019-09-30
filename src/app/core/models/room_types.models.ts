@@ -1,7 +1,6 @@
-export class RoomType{
+import { BaseModel } from './base.models';
+
+export class RoomType extends BaseModel{
     main_unit_id?:number;
-    created_at?:Date;
-    updated_at?:Date;
-    is_active:boolean;
     name:string;
 }

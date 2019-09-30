@@ -1,5 +1,6 @@
-export class Build {
-    is_active: boolean;
+import { BaseModel } from './base.models';
+
+export class Build extends BaseModel{
     address: string;
     gps: string;
     name: string;

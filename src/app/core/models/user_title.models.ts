@@ -1,6 +1,5 @@
-export class Sites{
+import { BaseModel } from './base.models';
+
+export class Sites extends BaseModel{
     user_title_id?:number;
-    created_at?:Date;
-    updated_at?:Date;
-    is_active:boolean;
 }

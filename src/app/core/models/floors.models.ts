@@ -1,8 +1,7 @@
-export class Floors{
+import { BaseModel } from './base.models';
+
+export class Floors extends BaseModel{
     floor_id?:number;
-    created_at?:Date;
-    updated_at?:Date;
-    is_active:boolean;
     name:string;
     map:string;
     other:string;

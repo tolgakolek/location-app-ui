@@ -1,8 +1,7 @@
-export class User{
+import { BaseModel } from './base.models';
+
+export class User extends BaseModel{
     user_id?:number;
-    created_at?:Date;
-    updated_at?:Date;
-    is_active:boolean;
     name:string;
     email:string;
     gender:number;
