@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <app-page-title title="Yeni Kampüs" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box">
+                <h4 class="header-title">Yeni Kampüs Ekle</h4>
+                <p class="sub-header">
+                    Yeni kampüs eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+                </p>
+                <form (ngSubmit)="basicSubmit()" [formGroup]="basicFormvalidation">
+                    <div class="form-group">
+                        <label>Kampüs Adı<span class="text-danger">*</span></label>
+                        <input type="text" name="nick" formControlName="campusName"
+                        placeholder="Kampüs Adını Girin" class="form-control" [ngClass]="{'is-invalid': basicsubmit && basic.campusName.errors}">
+                        <div *ngIf="basicsubmit && basic.campusName.errors" class="invalid-feedback">
+                            <span *ngIf="basic.campusName.errors.required">Lütfen kampüs adını giriniz.</span>
+                            <span *ngIf="basic.campusName.errors.pattern">Özel karakterler kullanmayınız.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-blue p-1">
+                            <input id="checkbox6a" name="checkboxBlue"  [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
+                             type="checkbox">
+                            <label for="checkbox6a">
+                                    <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Kampüs Aktif</span>
+                                    <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Kampüs Pasif</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group text-center" *ngIf="success">
+                            <ngb-alert [dismissible]="false" (close)="success=false" class="alert alert-success bg-success text-black border-0" 
+                            type="success" data-auto-dismiss>
+                                Yeni <strong>Kampüs</strong>
+                                başarılı bir şekilde eklendi.</ngb-alert>
+                    </div>
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+                            Kaydet
+                        </button>
+                        <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                           Temizle
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    

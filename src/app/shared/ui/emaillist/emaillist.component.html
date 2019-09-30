@@ -1,0 +1,22 @@
+<!-- List  -->
+<div class="mail-list" *ngFor="let list of emailList">
+  <a href="javascript: void(0);" class="list-group-item border-0"
+    [ngClass]="{'text-danger font-weight-bold': list.text === 'danger'}">
+    <i class="{{list.icon}} font-18 align-middle mr-2"></i>{{list.name}} 
+    <span class="badge bagde-danger float-right ml-2 mt-1" [ngClass]="
+                  {
+                    'badge-danger': list.text === 'danger',
+                    'badge-info': list.text === 'info'
+                  }">
+    {{list.value}}</span>
+  </a>
+</div>
+<!-- End list -->
+
+<!-- Label -->
+<h6 class="mt-4">Labels</h6>
+<div class="list-group b-0 mail-list" *ngFor="let label of emailLabel">
+  <a href="javascript: void(0);" class="list-group-item border-0"><span
+      class="mdi mdi-circle text-{{label.text}} mr-2"></span>{{label.name}}</a>
+</div>
+<!-- End label -->

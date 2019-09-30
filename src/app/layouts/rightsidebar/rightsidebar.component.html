@@ -1,0 +1,35 @@
+<!-- Right Sidebar -->
+<div class="right-bar" (clickOutside)="hide()" [exclude]="'.right-bar-toggle'">
+  <div class="rightbar-title">
+    <a href="javascript:void(0);" class="right-bar-toggle float-right" (click)="hide();">
+      <i class="fe-x noti-icon"></i>
+    </a>
+    <h4 class="m-0 text-white">Settings</h4>
+  </div>
+  <div class="slimscroll-menu" appSlimScroll>
+    <!-- User box -->
+    <div class="user-box">
+      <div class="user-img">
+        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+        <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+      </div>
+
+      <h5><a href="javascript: void(0);">Nik G. Patel</a> </h5>
+      <p class="text-muted mb-0"><small>Admin Head</small></p>
+    </div>
+
+    <div class="inbox-widget pl-3 pr-3">
+      <h5 class="mt-0">Recent</h5>
+      <div class="inbox-item" *ngFor="let inbox of inboxData">
+        <div class="inbox-item-img"><img src="{{ inbox.image }}" class="rounded-circle" alt=""> <i
+            class="online user-status"></i></div>
+        <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">{{ inbox.name }}</a></p>
+        <p class="inbox-item-text">{{ inbox.message }}</p>
+      </div>
+    </div>
+  </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>

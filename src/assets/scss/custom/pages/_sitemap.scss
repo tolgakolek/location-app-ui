@@ -1,0 +1,59 @@
+// 
+// sitemap.scss
+//
+
+.sitemap {
+    list-style: none;
+    padding-left: 0;
+
+    > li {
+        > ul {
+            margin-top: 1rem;
+            padding-left: 0;
+        }
+    }
+
+    li {
+        line-height: 2rem;
+        vertical-align: top;
+        list-style: none;
+        position: relative;
+
+        a {
+            text-decoration: none;
+            color: $gray-700;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover {
+                color: $primary;
+            }
+        }   
+    }
+    ul {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 10px;
+
+        li {
+            position: relative;
+
+            a {
+                margin-left: 2.75rem;
+            }
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+                border-bottom: 1px #ccc solid;
+                border-left: 1px solid rgba(152, 166, 173, 0.5);
+                position: absolute;
+                top: -1rem;
+            }
+        }
+    }
+}

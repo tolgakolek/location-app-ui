@@ -1,0 +1,35 @@
+//
+// accordions.scss
+//
+
+.custom-accordion {
+  .card {
+    + .card {
+      margin-top: 0.5rem;
+    }
+  }
+  .accordion-arrow {
+    font-size: 1.2rem;
+  }
+  a {
+    &.collapsed {
+      i.accordion-arrow {
+        &:before {
+          content: "\F142";
+        }
+      }
+    }
+  }
+}
+
+// Accordions
+
+.accordion {
+  .card {
+    margin-bottom: 0;
+  }
+
+  .card-header {
+    padding: 5px;
+  }
+}

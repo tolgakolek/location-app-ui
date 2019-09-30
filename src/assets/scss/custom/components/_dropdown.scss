@@ -1,0 +1,62 @@
+//
+// dropdown.scss
+//
+
+.dropdown-menu {
+  box-shadow: $box-shadow;
+  animation-fill-mode: both;
+  margin: 0;
+  border: none;
+  font-size: $font-size-base;
+  z-index: 1000;
+}
+
+// Dropdown Large (Custom)
+.dropdown-lg {
+  width: $dropdown-lg-width;
+}
+
+@include media-breakpoint-down(sm) {
+  .dropdown-lg {
+    width: 200px !important;
+  }
+}
+
+// Dropdown Mega Menu
+
+.dropdown-mega {
+  position: static !important;
+}
+
+.dropdown-megamenu {
+  padding: 20px;
+  left: 20px !important;
+  right: 20px !important;
+  background-image: url("/assets/images/megamenu-bg.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
+.megamenu-list {
+  li {
+    padding: 5px 20px;
+    position: relative;
+
+    a {
+      color: $gray-700;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+
+    &:before {
+      content: "\F130";
+      position: absolute;
+      left: 0;
+      font-family: "Material Design Icons";
+      font-size: 9px;
+      line-height: 24px;
+    }
+  }
+}

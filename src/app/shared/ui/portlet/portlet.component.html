@@ -1,0 +1,31 @@
+<div class="card" *ngIf="isVisible">
+  <!-- card header -->
+
+  <div class="card-header bg-{{ color }} text-{{ text }} {{headerClass}}">
+    {{ title }}
+
+    <div class="card-widgets">
+      <a href="javascript: void(0);" (click)="refreshContent()"><i class="mdi mdi-refresh"></i></a>
+      <a href="javascript: void(0);" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+        aria-expanded="false" aria-controls="cardCollpase5" class="mdi mdi-minus" [ngClass]="
+           {
+             'mdi-minus': isCollapsed == false,
+             'mdi-plus': isCollapsed == true
+           }">
+      </a>
+      <a href="javascript: void(0);" (click)="remove()"><i class="mdi mdi-close"></i></a>
+    </div>
+
+  </div>
+
+  <!-- End card header -->
+
+  <div id="cardCollpase5" [ngbCollapse]="isCollapsed">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="card-disabled" *ngIf="isLoading">
+    <div class="card-portlets-loader"></div>
+  </div>
+
+</div>
