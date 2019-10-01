@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <app-page-title title="Yeni Site" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+      <div class="col-12">
+        <div class="card-box">
+          <h4 class="header-title">Yeni Site Ekle</h4>
+          <p class="sub-header">
+            Yeni Site eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+          </p>
+          <form>
+            <div class="form-group">
+              <label>Site İsmi<span class="text-danger">*</span></label>
+              <input type="text" name="nick" placeholder="Site ismi giriniz" class="form-control"
+                [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+              <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+                <span *ngIf="basic.deviceName.errors.required">Lütfen site ismini giriniz.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Gps<span class="text-danger">*</span></label>
+              <input type="text" name="nick" placeholder="Gps giriniz" class="form-control"
+                [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+              <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+                <span *ngIf="basic.deviceName.errors.required">Lütfen gps giriniz.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Özellik<span class="text-danger">*</span></label>
+              <input type="text" name="nick" placeholder="Site Özellik giriniz" class="form-control"
+                [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+              <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+                <span *ngIf="basic.deviceName.errors.required">Lütfen özellik giriniz.</span>
+              </div>
+            </div>
+            <div class="form-group text-right mb-0">
+              <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+                Kaydet
+              </button>
+              <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                Temizle
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

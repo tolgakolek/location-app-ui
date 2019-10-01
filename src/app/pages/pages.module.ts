@@ -8,6 +8,7 @@ import { AddBuildModule } from './Build/build.module';
 import { AddCampusModule } from './Campus/campus.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { BlockModule } from './block/block.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [],
@@ -18,7 +19,8 @@ import { BlockModule } from './block/block.module';
     PagesRoutingModule,
     BlockModule,
     AddBuildModule,
-    AddCampusModule
+    AddCampusModule,
+    UserModule
   ]
 })
 export class PagesModule { }

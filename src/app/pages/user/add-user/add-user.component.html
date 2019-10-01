@@ -1,0 +1,96 @@
+<div class="container-fluid">
+  <app-page-title title="Yeni Kullanıcı" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card-box">
+        <h4 class="header-title">Yeni Kullanıcı Ekle</h4>
+        <p class="sub-header">
+          Yeni Kullanıcı eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+        </p>
+        <form>
+          <div class="form-group">
+            <label>Tc Kimlik<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Soyisim giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceName.errors.required">Lütfen Tc Kimlik giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>İsim<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="İsim giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceName.errors.required">Lütfen adını giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Soyisim<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Soyisim giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceName.errors.required">Lütfen soyisim giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mail<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Soyisim giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceName.errors.required">Lütfen E-mail giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Şifre<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Şifre giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
+            </div>
+          </div>
+          <div _ngcontent-pnh-c6="" class="form-group mb-3">
+            <label>Lütfen Bir Cinsiyet Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
+              <option _ngcontent-pnh-c6="" selected="selected" value="0">Cinsiyet Seçiniz</option>
+              <option _ngcontent-pnh-c6="">Erkek</option>
+              <option _ngcontent-pnh-c6="">Kadın</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label>Kullanıcı Yetkisi Seçiniz</label>
+            <ng-select [items]="selectRole" [multiple]="true"></ng-select>
+          </div>
+          <div class="form-group mb-3">
+            <label>Kullanıcı Departmanı Seçiniz</label>
+            <ng-select [items]="selectDepartment" [multiple]="true"></ng-select>
+          </div>
+
+
+          <div class="form-group">
+            <div class="checkbox checkbox-blue p-1">
+              <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
+                [ngModelOptions]="{standalone: true}" type="checkbox">
+              <label for="checkbox6a">
+                <span *ngIf="checkboxValue" title="Kullanıcı kullanımdadır.">Kullanıcı Aktif</span>
+                <span *ngIf="!checkboxValue" title="Kullanıcı kullanımda değildir.">Kullanıcı Pasif</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group text-center" *ngIf="success">
+            <ngb-alert [dismissible]="false" (close)="success=false"
+              class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+              Yeni <strong>Kullanıcı</strong>
+              başarılı bir şekilde eklendi.</ngb-alert>
+          </div>
+          <div class="form-group text-right mb-0">
+            <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+              Kaydet
+            </button>
+            <button type="reset" class="btn btn-secondary waves-effect waves-light">
+              Temizle
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
