@@ -5,7 +5,7 @@ import { AddBlockComponent } from './add-block/add-block.component';
 
 const routes: Routes = [
     {
-        path: 'addblock',
+        path: 'add',
         component: AddBlockComponent
     }
 ];

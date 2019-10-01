@@ -71,7 +71,7 @@ export class AddBuildComponent implements OnInit {
         address: this.formValidation.value.textareaAddress,
         properties: this.formValidation.value.textareaProperties,
         gps: this.formValidation.value.gps,
-        is_active: this.checkboxValue,
+        isActive: this.checkboxValue,
       };
       if (this.siteId != 0) {
         this.build.site_id = this.siteId;

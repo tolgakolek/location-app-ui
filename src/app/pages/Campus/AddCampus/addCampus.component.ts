@@ -50,7 +50,7 @@ export class AddCampusComponent implements OnInit {
       setTimeout(() => this.checkboxValue = false, 2000);
       setTimeout(() => this.formValidation.reset(), 2000);
       setTimeout(() => this.submitControl=false, 2000);
-     
+    
     }
   }
 }
