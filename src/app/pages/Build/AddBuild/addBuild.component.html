@@ -7,12 +7,12 @@
                 <p class="sub-header">
                     Yeni site eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
                 </p>
-                <form (ngSubmit)="basicSubmit()" [formGroup]="basicFormvalidation">
+                <form (ngSubmit)="submit()" [formGroup]="formValidation">
                     <div class="form-group">
                         <label>Bina Adı<span class="text-danger">*</span></label>
                         <input type="text" name="name" formControlName="buildName" placeholder="Kampüs Adını Girin"
-                            class="form-control" [ngClass]="{'is-invalid': basicsubmit && basic.buildName.errors}">
-                        <div *ngIf="basicsubmit && basic.buildName.errors" class="invalid-feedback">
+                            class="form-control" [ngClass]="{'is-invalid': submitControl && basic.buildName.errors}">
+                        <div *ngIf="submitControl && basic.buildName.errors" class="invalid-feedback">
                             <span *ngIf="basic.buildName.errors.required">Lütfen bina adını giriniz.</span>
                             <span *ngIf="basic.buildName.errors.pattern">Özel karakterleri kullanmayınız.</span>
                         </div>
@@ -35,7 +35,7 @@
                             (ngModelChange)="setSiteId($event)" [ngModelOptions]="{standalone: true}"
                             [ngModel]="siteId">
                             <option _ngcontent-pnh-c6="" selected="selected" value="0">Site Seçiniz</option>
-                            <option _ngcontent-pnh-c6="" *ngFor="let site of getSite();" [ngValue]="site.id">
+                            <option _ngcontent-pnh-c6="" *ngFor="let site of sitesService.sites" [ngValue]="site.id">
                                 {{ site.name }}</option>
                         </select>
                     </div>
@@ -43,8 +43,8 @@
                     <div class="form-group">
                         <label>Gps Bilgisi<span class="text-danger">*</span></label>
                         <input type="text" name="gps" formControlName="buildGps" placeholder="Gps Girin"
-                            class="form-control" [ngClass]="{'is-invalid': basicsubmit && basic.buildGps.errors}">
-                        <div *ngIf="basicsubmit && basic.buildGps.errors" class="invalid-feedback">
+                            class="form-control" [ngClass]="{'is-invalid': submitControl && basic.buildGps.errors}">
+                        <div *ngIf="submitControl && basic.buildGps.errors" class="invalid-feedback">
                             <span *ngIf="basic.buildGps.errors.required">Lütfen gps bilgilerini giriniz.</span>
                             <span *ngIf="basic.buildGps.errors.pattern">Özel karakterleri kullanmayınız.</span>
                         </div>
@@ -54,8 +54,8 @@
                         <label>Adres Bilgisi</label>
                         <div>
                             <textarea formControlName="textareaAddress" class="form-control" rows="5"
-                                [ngClass]="{'is-invalid': basicsubmit && basic.textareaAddress.errors}"></textarea>
-                            <div *ngIf="basicsubmit && basic.textareaAddress.errors" class="invalid-feedback">
+                                [ngClass]="{'is-invalid': submitControl && basic.textareaAddress.errors}"></textarea>
+                            <div *ngIf="submitControl && basic.textareaAddress.errors" class="invalid-feedback">
                                 <span *ngIf="basic.textareaAddress.errors.required">Lütfen Adres Bilgisini
                                     Giriniz.</span>
                             </div>
@@ -66,8 +66,8 @@
                         <label>Bina Özellikleri</label>
                         <div>
                             <textarea formControlName="textareaProperties" class="form-control" rows="5"
-                                [ngClass]="{'is-invalid': basicsubmit && basic.textareaProperties.errors}"></textarea>
-                            <div *ngIf="basicsubmit && basic.textareaProperties.errors" class="invalid-feedback">
+                                [ngClass]="{'is-invalid': submitControl && basic.textareaProperties.errors}"></textarea>
+                            <div *ngIf="submitControl && basic.textareaProperties.errors" class="invalid-feedback">
                                 <span *ngIf="basic.textareaProperties.errors.required">Lütfen Bina Özelliklerini
                                     Giriniz.</span>
                             </div>

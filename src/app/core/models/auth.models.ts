@@ -1,6 +1,4 @@
-import { BaseModel } from './base.models';
-
-export class User extends BaseModel {
+export class User{
     id: number;
     username?: string;
     password: string;

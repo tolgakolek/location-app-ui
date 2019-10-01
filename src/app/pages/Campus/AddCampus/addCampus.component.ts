@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient , HttpHeaders} from '@angular/common/http';
-import { Campus } from "./model";
+import { Campus } from "../../../core/models/campus.models";
+import { CampusService } from 'src/app/core/services/campus.service';
 @Component({
   selector: 'app-add-campus',
   templateUrl: './addCampus.component.html',
@@ -15,54 +16,41 @@ export class AddCampusComponent implements OnInit {
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
-  basicFormvalidation: FormGroup;
-  basicsubmit: boolean;
+  formValidation: FormGroup;
+  submitControl: boolean;
   campus: Campus;
   checkboxValue = false ;
   success=false;
-  url="http://localhost:8080/campus/";
-  constructor(public formBuilder: FormBuilder,private http:HttpClient) { }
+  constructor(public formBuilder: FormBuilder,private http:HttpClient, private campusService:CampusService) { }
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Home', path: '/' }, { label: 'Yeni Kampüs', path: '/', active: true }];
 
-    this.basicFormvalidation = this.formBuilder.group({
-      campusName: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+    this.formValidation = this.formBuilder.group({
+      campusName: ['', [Validators.required]],
     });
     
-    this.basicsubmit = false;
+    this.submitControl = false;
   }
 
   get basic() {
-    return this.basicFormvalidation.controls
+    return this.formValidation.controls;
   }
 
-  basicSubmit() {
-    this.basicsubmit = true;
-    if(this.basicFormvalidation.status=="VALID"){
+  submit() {
+    this.submitControl = true;
+    if(this.formValidation.status=="VALID"){
       this.campus={
         active:this.checkboxValue,
         campusSites:null,
-        name:this.basicFormvalidation.value.campusName,
+        name:this.formValidation.value.campusName,
       };
-
-      const headerDict = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'charset':'utf-8',
-      }
-      const requestOptions = {                                                                                                                                                                                 
-        headers: new HttpHeaders(headerDict), 
-      };
-      
-      this.http.post(this.url,JSON.stringify(this.campus),requestOptions)
-                .subscribe( response => {
-                  console.log(response);
-                  this.success=true;
-                  setTimeout(() => this.success = false, 2000);
-                  setTimeout(() => this.checkboxValue = false, 2000);
-                  setTimeout(() => this.basicFormvalidation.reset(), 2000);
-                  setTimeout(() => this.basicsubmit=false, 2000);
-                })
+      console.log(this.campusService.postCampus(this.campus));
+      this.success=true;
+      setTimeout(() => this.success = false, 2000);
+      setTimeout(() => this.checkboxValue = false, 2000);
+      setTimeout(() => this.formValidation.reset(), 2000);
+      setTimeout(() => this.submitControl=false, 2000);
+     
     }
   }
 }

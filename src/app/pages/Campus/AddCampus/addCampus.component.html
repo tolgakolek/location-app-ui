@@ -7,12 +7,12 @@
                 <p class="sub-header">
                     Yeni kampüs eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
                 </p>
-                <form (ngSubmit)="basicSubmit()" [formGroup]="basicFormvalidation">
+                <form (ngSubmit)="submit()" [formGroup]="formValidation">
                     <div class="form-group">
                         <label>Kampüs Adı<span class="text-danger">*</span></label>
                         <input type="text" name="nick" formControlName="campusName"
-                        placeholder="Kampüs Adını Girin" class="form-control" [ngClass]="{'is-invalid': basicsubmit && basic.campusName.errors}">
-                        <div *ngIf="basicsubmit && basic.campusName.errors" class="invalid-feedback">
+                        placeholder="Kampüs Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.campusName.errors}">
+                        <div *ngIf="submitControl && basic.campusName.errors" class="invalid-feedback">
                             <span *ngIf="basic.campusName.errors.required">Lütfen kampüs adını giriniz.</span>
                             <span *ngIf="basic.campusName.errors.pattern">Özel karakterler kullanmayınız.</span>
                         </div>
