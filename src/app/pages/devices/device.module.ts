@@ -20,7 +20,6 @@ import { ListDeviceComponent } from './list-device/list-device.component';
   imports: [
     CommonModule,
     FormsModule,
-    NgbModule,
     ReactiveFormsModule,
     NgbDropdownModule,
     NgbDatepickerModule,

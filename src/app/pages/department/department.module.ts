@@ -9,14 +9,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartsModule } from 'ng2-charts';
 
 import { UIModule } from '../../shared/ui/ui.module';
-import { DeviceRoutingModule } from './device-routing';
+import { DepartmentRoutingModule } from './department-routing';
 
-import { AddDeviceComponent } from './add-device/add-device.component';
-import { UpdateDeviceComponent } from './update-device/update-device.component';
-import { ListDeviceComponent } from './list-device/list-device.component';
+import { AddDepartmentComponent } from './add-department/add-department.component';
+import { UpdateDepartmentComponent } from './update-department/update-department.component';
+import { ListDepartmentComponent } from './list-department/list-department.component';
 
 @NgModule({
-  declarations: [AddDeviceComponent, UpdateDeviceComponent, ListDeviceComponent],
+  declarations: [AddDepartmentComponent, UpdateDepartmentComponent, ListDepartmentComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +31,7 @@ import { ListDeviceComponent } from './list-device/list-device.component';
     ChartsModule,
     NgbCollapseModule,
     UIModule,
-    DeviceRoutingModule
+    DepartmentRoutingModule
   ]
 })
-export class DeviceModule { }
+export class DepartmentModule { }

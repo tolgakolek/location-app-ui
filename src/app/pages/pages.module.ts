@@ -9,6 +9,13 @@ import { AddCampusModule } from './Campus/campus.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { BlockModule } from './block/block.module';
 import { UserModule } from './user/user.module';
+import { DepartmentModule } from './department/department.module';
+import { DeviceModule } from './device/device.module';
+import { DeviceTypeModule } from './devicetype/devicetype.module';
+import { FloorModule } from './floor/floor.module';
+import { MainUnitModule } from './mainunit/mainunit.module';
+import { SiteModule } from './site/site.module';
+import { SubUnitModule } from './subunit/subunit.module';
 
 @NgModule({
   declarations: [],
@@ -20,7 +27,14 @@ import { UserModule } from './user/user.module';
     BlockModule,
     AddBuildModule,
     AddCampusModule,
-    UserModule
+    UserModule,
+    DepartmentModule,
+    DeviceModule,
+    DeviceTypeModule,
+    FloorModule,
+    SiteModule,
+    SubUnitModule,
+    MainUnitModule
   ]
 })
 export class PagesModule { }

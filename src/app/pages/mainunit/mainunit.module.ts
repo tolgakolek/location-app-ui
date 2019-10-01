@@ -9,21 +9,22 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartsModule } from 'ng2-charts';
 
 import { UIModule } from '../../shared/ui/ui.module';
-import { DeviceRoutingModule } from './device-routing';
+import { MainUnitRoutingModule } from './mainunit-routing';
 
-import { AddDeviceComponent } from './add-device/add-device.component';
-import { UpdateDeviceComponent } from './update-device/update-device.component';
-import { ListDeviceComponent } from './list-device/list-device.component';
+import { AddMainUnitComponent } from './add-main-unit/add-main-unit.component';
+import { UpdateMainUnitComponent } from './update-main-unit/update-main-unit.component';
+import { ListMainUnitComponent } from './list-main-unit/list-main-unit.component';
+
 
 @NgModule({
-  declarations: [AddDeviceComponent, UpdateDeviceComponent, ListDeviceComponent],
+  declarations: [AddMainUnitComponent, UpdateMainUnitComponent, ListMainUnitComponent],
   imports: [
     CommonModule,
     FormsModule,
-    NgbModule,
     ReactiveFormsModule,
     NgbDropdownModule,
     NgbDatepickerModule,
+    NgbModule,
     NgbProgressbarModule,
     NgbTooltipModule,
     NgbModule,
@@ -31,7 +32,7 @@ import { ListDeviceComponent } from './list-device/list-device.component';
     ChartsModule,
     NgbCollapseModule,
     UIModule,
-    DeviceRoutingModule
+    MainUnitRoutingModule
   ]
 })
-export class DeviceModule { }
+export class MainUnitModule { }

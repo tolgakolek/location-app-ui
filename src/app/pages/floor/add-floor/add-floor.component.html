@@ -3,13 +3,22 @@
   <div class="row">
     <div class="col-12">
       <div class="card-box">
-        <h4 class="header-title">Yeni Cihaz Ekle</h4>
+        <h4 class="header-title">Yeni Kat Ekle</h4>
         <p class="sub-header">
           Yeni Cihaz eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
         <form>
           <div _ngcontent-pnh-c6="" class="form-group mb-3">
-            <label>Lütfen Bir Cihaz Türü Seçin</label>
+            <label>Lütfen Bina Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
+              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
+              <option _ngcontent-pnh-c6="">Device 1</option>
+              <option _ngcontent-pnh-c6="">Device 2</option>
+              <option _ngcontent-pnh-c6="">Device 3</option>
+            </select>
+          </div>
+          <div _ngcontent-pnh-c6="" class="form-group mb-3">
+            <label>Lütfen Blok Seçin</label>
             <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
               <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
               <option _ngcontent-pnh-c6="">Device 1</option>
@@ -18,25 +27,25 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Cihaz Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Cihaz adı giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <label>Kat Adı<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Cihaz adı giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
             <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
               <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
-            <label>Teknoloji<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Özellik giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <label>Map<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Özellik giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
             <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
               <span *ngIf="basic.deviceName.errors.required">Lütfen Teknoloji giriniz.</span>
             </div>
           </div>
           <div class="form-group">
-            <label>Özellik<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Özellik giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+            <label>Other<span class="text-danger">*</span></label>
+            <input type="text" name="nick" placeholder="Özellik giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
             <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
               <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
             </div>
@@ -46,15 +55,15 @@
               <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
                 [ngModelOptions]="{standalone: true}" type="checkbox">
               <label for="checkbox6a">
-                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Cihaz Aktif</span>
-                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Cihaz Pasif</span>
+                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Kat Aktif</span>
+                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Kat Pasif</span>
               </label>
             </div>
           </div>
           <div class="form-group text-center" *ngIf="success">
             <ngb-alert [dismissible]="false" (close)="success=false"
               class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
-              Yeni <strong>Cihaz</strong>
+              Yeni <strong>Kat</strong>
               başarılı bir şekilde eklendi.</ngb-alert>
           </div>
           <div class="form-group text-right mb-0">
@@ -68,5 +77,4 @@
         </form>
       </div>
     </div>
-  </div>
   </div>

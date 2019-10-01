@@ -9,6 +9,12 @@ const routes: Routes = [
   { path: 'block', loadChildren: () => import('./block/block.module').then(m => m.BlockModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'site', loadChildren: () => import('./site/site.module').then(m => m.SiteModule) },
+  { path: 'device', loadChildren: () => import('./device/device.module').then(m => m.DeviceModule)  },
+  { path: 'devicetype', loadChildren: () => import('./devicetype/devicetype.module').then(m => m.DeviceTypeModule)  },
+  { path: 'floor', loadChildren: () => import('./floor/floor.module').then(m => m.FloorModule)  },
+  { path: 'mainunit', loadChildren: () => import('./mainunit/mainunit.module').then(m => m.MainUnitModule)  },
+  { path: 'subunit', loadChildren: () => import('./subunit/subunit.module').then(m => m.SubUnitModule)  },
+  {path: 'department', loadChildren: () => import('./department/department.module').then(m => m.DepartmentModule) }
 
 ];
 

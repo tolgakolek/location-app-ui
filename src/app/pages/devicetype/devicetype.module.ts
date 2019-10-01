@@ -9,14 +9,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartsModule } from 'ng2-charts';
 
 import { UIModule } from '../../shared/ui/ui.module';
-import { DeviceRoutingModule } from './device-routing';
+import { DeviceTypeRoutingModule } from './devicetype-routing';
 
-import { AddDeviceComponent } from './add-device/add-device.component';
-import { UpdateDeviceComponent } from './update-device/update-device.component';
-import { ListDeviceComponent } from './list-device/list-device.component';
+import { AddDeviceTypeComponent } from './add-device-type/add-device-type.component'
+import { UpdateDeviceTypeComponent } from './update-device-type/update-device-type.component';
+import { ListDeviceTypeComponent } from './list-device-type/list-device-type.component';
 
 @NgModule({
-  declarations: [AddDeviceComponent, UpdateDeviceComponent, ListDeviceComponent],
+  declarations: [AddDeviceTypeComponent, UpdateDeviceTypeComponent, ListDeviceTypeComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +31,7 @@ import { ListDeviceComponent } from './list-device/list-device.component';
     ChartsModule,
     NgbCollapseModule,
     UIModule,
-    DeviceRoutingModule
+    DeviceTypeRoutingModule
   ]
 })
-export class DeviceModule { }
+export class DeviceTypeModule { }
