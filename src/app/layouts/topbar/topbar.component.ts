@@ -73,59 +73,52 @@ export class TopbarComponent implements OnInit {
    */
   _fetchNotifications() {
     this.notificationItems = [{
-      text: 'Caleb Flakelar commented on Admin',
-      subText: '1 min ago',
+      text: 'Kubilay Çiçek',
+      subText: 'Merhaba , son durum nedir ?',
       icon: 'mdi mdi-comment-account-outline',
-      bgColor: 'primary',
+      bgColor: 'success',
       redirectTo: '/notification/1'
     },
     {
-      text: 'New user registered.',
-      subText: '5 min ago',
-      icon: 'mdi mdi-account-plus',
-      bgColor: 'info',
+      text: 'Semih Şahin',
+      subText: 'Merhaba , projeyi tamamladım.',
+      icon: 'mdi mdi-comment-account-outline',
+      bgColor: 'success',
       redirectTo: '/notification/2'
     },
     {
-      text: 'Cristina Pride',
-      subText: 'Hi, How are you? What about our next meeting',
+      text: 'Gülşah Çifçi',
+      subText: 'Merhaba , yeni proje hakkında...',
       icon: 'mdi mdi-comment-account-outline',
       bgColor: 'success',
       redirectTo: '/notification/3'
     },
     {
-      text: 'Caleb Flakelar commented on Admin',
-      subText: '2 days ago',
+      text: 'Emre Gören',
+      subText: 'Merhaba , yeni mobil program eklendi.',
       icon: 'mdi mdi-comment-account-outline',
-      bgColor: 'danger',
+      bgColor: 'success',
       redirectTo: '/notification/4'
     },
     {
-      text: 'Caleb Flakelar commented on Admin',
-      subText: '1 min ago',
+      text: 'Cristina Pride',
+      subText: 'Merhaba nasılsın? Peki ya bir sonraki toplantımız.',
       icon: 'mdi mdi-comment-account-outline',
-      bgColor: 'primary',
+      bgColor: 'success',
       redirectTo: '/notification/5'
     },
     {
-      text: 'New user registered.',
-      subText: '5 min ago',
-      icon: 'mdi mdi-account-plus',
-      bgColor: 'info',
+      text: 'Caleb Flakelar Admin hakkında yorum yaptı',
+      subText: '2 gün önce',
+      icon: 'mdi mdi-comment-account-outline',
+      bgColor: 'danger',
       redirectTo: '/notification/6'
     },
     {
-      text: 'Cristina Pride',
-      subText: 'Hi, How are you? What about our next meeting',
-      icon: 'mdi mdi-comment-account-outline',
-      bgColor: 'success',
-      redirectTo: '/notification/7'
-    },
-    {
-      text: 'Caleb Flakelar commented on Admin',
-      subText: '2 days ago',
-      icon: 'mdi mdi-comment-account-outline',
-      bgColor: 'danger',
+      text: 'Yeni Kullanıcı Eklendi',
+      subText: '5 dk önce',
+      icon: 'mdi mdi-account-plus',
+      bgColor: 'info',
       redirectTo: '/notification/8'
     }];
   }

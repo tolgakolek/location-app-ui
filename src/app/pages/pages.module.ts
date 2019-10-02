@@ -16,6 +16,11 @@ import { FloorModule } from './floor/floor.module';
 import { MainUnitModule } from './mainunit/mainunit.module';
 import { SiteModule } from './site/site.module';
 import { SubUnitModule } from './subunit/subunit.module';
+import { RoomTypeModule } from './roomType/room-type.module';
+import { RoomModule } from './room/room.module';
+import { UserContactTypeModule } from './userContactType/user-contact-type.module';
+import { UserRoleModule } from './userRole/user-role.module';
+import { UserTitleModule } from './userTitle/user-title.module';
 
 @NgModule({
   declarations: [],
@@ -34,7 +39,12 @@ import { SubUnitModule } from './subunit/subunit.module';
     FloorModule,
     SiteModule,
     SubUnitModule,
-    MainUnitModule
+    MainUnitModule,
+    RoomTypeModule,
+    RoomModule,
+    UserContactTypeModule,
+    UserRoleModule,
+    UserTitleModule
   ]
 })
 export class PagesModule { }
