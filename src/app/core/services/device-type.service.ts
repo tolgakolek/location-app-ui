@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Sites } from '../models/sites.models';
+import { DeviceTypes } from '../models/device_types.models';
 @Injectable({ providedIn: 'root' })
-export class SitesService {
-    sites: any;
-    url = "http://localhost:8080/site/";
+export class DeviceTypeService {
+    devices: DeviceTypes[];
+    url = "http://localhost:8080/devicetpye/";
     headerDict = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -15,17 +15,18 @@ export class SitesService {
       };
      
     constructor(private http: HttpClient) {
-        this.getSites().subscribe(data => this.sites = data);
+        this.getMDeviceTypes().subscribe(data => this.devices = data);
     }
 
-    getSites() : any {
+    getMDeviceTypes() : any {
         return this.http.get(this.url + "list/");
     }
 
-    postSites( site:any)  {
-        this.http.post(this.url, JSON.stringify(site), this.requestOptions)
+    postDeviceTypes( deviceType:DeviceTypes)  {
+        this.http.post(this.url, JSON.stringify(deviceType), this.requestOptions)
             .subscribe(response => {
-                this.getSites();
+              console.log(response);
+                this.getMDeviceTypes();
                 return true;
             }, error => { return false; });
     }

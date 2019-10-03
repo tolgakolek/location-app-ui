@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Sites } from '../models/sites.models';
+import { MainUnits } from '../models/main_units.models';
 @Injectable({ providedIn: 'root' })
-export class SitesService {
-    sites: any;
-    url = "http://localhost:8080/site/";
+export class MainUnitService {
+    mainUnits: MainUnits[];
+    url = "http://localhost:8080/mainunit/";
     headerDict = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -15,17 +15,18 @@ export class SitesService {
       };
      
     constructor(private http: HttpClient) {
-        this.getSites().subscribe(data => this.sites = data);
+        this.getMainUnits().subscribe(data => this.mainUnits = data);
     }
 
-    getSites() : any {
+    getMainUnits() : any {
         return this.http.get(this.url + "list/");
     }
 
-    postSites( site:any)  {
-        this.http.post(this.url, JSON.stringify(site), this.requestOptions)
+    postMainUnit( mainUnit:MainUnits)  {
+        this.http.post(this.url, JSON.stringify(mainUnit), this.requestOptions)
             .subscribe(response => {
-                this.getSites();
+              console.log(response);
+                this.getMainUnits();
                 return true;
             }, error => { return false; });
     }

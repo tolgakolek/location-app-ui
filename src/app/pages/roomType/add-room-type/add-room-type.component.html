@@ -7,18 +7,18 @@
               <p class="sub-header">
                   Yeni oda türü eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
               </p>
-              <form >
+              <form (ngSubmit)="submit()" [formGroup]="formValidation">
                   <div class="form-group">
                       <label>Oda Türünün Adı<span class="text-danger">*</span></label>
-                      <input type="text" name="nick"
-                      placeholder="Oda Türünün Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.campusName.errors}">
-                      <div *ngIf="submitControl && basic.campusName.errors" class="invalid-feedback">
-                          <span *ngIf="basic.campusName.errors.required">Lütfen oda türünün adını giriniz.</span>
+                      <input type="text" name="nick" formControlName="roomTypeName"
+                      placeholder="Oda Türünün Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.roomTypeName.errors}">
+                      <div *ngIf="submitControl && basic.roomTypeName.errors" class="invalid-feedback">
+                          <span *ngIf="basic.roomTypeName.errors.required">Lütfen oda türünün adını giriniz.</span>
                       </div>
                   </div>
                   <div class="form-group">
                       <div class="checkbox checkbox-blue p-1">
-                          <input id="checkbox6a" name="checkboxBlue" 
+                          <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
                            type="checkbox">
                           <label for="checkbox6a">
                                   <span *ngIf="checkboxValue" title="Oda Türü kullanımdadır.">Oda Tür Aktif</span>

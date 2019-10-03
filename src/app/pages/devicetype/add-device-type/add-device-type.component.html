@@ -7,13 +7,13 @@
         <p class="sub-header">
           Yeni Cihaz Türü eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
           <div class="form-group">
             <label>Tür Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Cihaz adı giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
+            <input type="text" name="nick" formControlName="deviceTypeName" placeholder="Cihaz adı giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceTypeName.errors}">
+            <div *ngIf="submitControl && basic.deviceTypeName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceTypeName.errors.required">Lütfen cihaz tür adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
@@ -21,8 +21,8 @@
                 <input id="checkbox6a" name="checkboxBlue"  [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
                  type="checkbox">
                 <label for="checkbox6a">
-                        <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Tür Aktif</span>
-                        <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Tür Pasif</span>
+                        <span *ngIf="checkboxValue" title="Cihaz Türü kullanımdadır.">Tür Aktif</span>
+                        <span *ngIf="!checkboxValue" title="Cihaz Türü kullanımda değildir.">Tür Pasif</span>
                 </label>
             </div>
         </div>

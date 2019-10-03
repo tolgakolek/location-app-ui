@@ -28,7 +28,7 @@ export class CampusService {
     postCampus( campus:Campus)  {
         this.http.post(this.url, JSON.stringify(campus), this.requestOptions)
             .subscribe(response => {
-                this.getCampus();
+                console.log(this.getCampus());
                 return true;
             }, error => { return false; });
     }

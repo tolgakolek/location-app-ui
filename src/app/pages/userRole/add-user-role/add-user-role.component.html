@@ -7,19 +7,27 @@
               <p class="sub-header">
                   Yeni Kullanıcı Rolü eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
               </p>
-              <form >
+              <form (ngSubmit)="submit()" [formGroup]="formValidation">
                   <div class="form-group">
                       <label>Kullanıcı Rolünün Adı<span class="text-danger">*</span></label>
-                      <input type="text" name="nick"
-                      placeholder="Kullanıcı Rolü Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.campusName.errors}">
-                      <div *ngIf="submitControl && basic.campusName.errors" class="invalid-feedback">
-                          <span *ngIf="basic.campusName.errors.required">Lütfen Kullanıcı Rolü giriniz.</span>
+                      <input type="text" name="nick" formControlName="userRoleName"
+                      placeholder="Kullanıcı Rolü Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleName.errors}">
+                      <div *ngIf="submitControl && basic.userRoleName.errors" class="invalid-feedback">
+                          <span *ngIf="basic.userRoleName.errors.required">Lütfen Kullanıcı Rolü giriniz.</span>
                       </div>
                   </div>
                   <div class="form-group">
+                    <label>Özellik<span class="text-danger">*</span></label>
+                    <input type="text" name="nick" formControlName="userRoleDescription"
+                    placeholder="Kullanıcı Rolü Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleDescription.errors}">
+                    <div *ngIf="submitControl && basic.userRoleDescription.errors" class="invalid-feedback">
+                        <span *ngIf="basic.userRoleDescription.errors.required">Lütfen Özellik giriniz.</span>
+                    </div>
+                </div>
+                  <div class="form-group">
                       <div class="checkbox checkbox-blue p-1">
-                          <input id="checkbox6a" name="checkboxBlue" 
-                           type="checkbox">
+                          <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
+                           type="checkbox"> 
                           <label for="checkbox6a">
                                   <span *ngIf="checkboxValue" title="Kullanıcı Rolü kullanımdadır.">Kullanıcı Rolü Aktif</span>
                                   <span *ngIf="!checkboxValue" title="Kullanıcı Rolü kullanımda değildir.">Kullanıcı Rolü Pasif</span>

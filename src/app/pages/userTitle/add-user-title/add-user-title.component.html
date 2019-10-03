@@ -7,18 +7,18 @@
               <p class="sub-header">
                   Yeni Kullanıcı Ünvanı eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
               </p>
-              <form >
+              <form (ngSubmit)="submit()" [formGroup]="formValidation">
                   <div class="form-group">
                       <label>Kullanıcı Ünvanı Adı<span class="text-danger">*</span></label>
-                      <input type="text" name="nick"
-                      placeholder="Kullanıcı Ünvanı Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.campusName.errors}">
-                      <div *ngIf="submitControl && basic.campusName.errors" class="invalid-feedback">
-                          <span *ngIf="basic.campusName.errors.required">Lütfen Kullanıcı Ünvanı giriniz.</span>
+                      <input type="text" name="nick" formControlName="userTitleName"
+                      placeholder="Kullanıcı Ünvanı Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userTitleName.errors}">
+                      <div *ngIf="submitControl && basic.userTitleName.errors" class="invalid-feedback">
+                          <span *ngIf="basic.userTitleName.errors.required">Lütfen Kullanıcı Ünvanı giriniz.</span>
                       </div>
                   </div>
                   <div class="form-group">
                       <div class="checkbox checkbox-blue p-1">
-                          <input id="checkbox6a" name="checkboxBlue" 
+                          <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
                            type="checkbox">
                           <label for="checkbox6a">
                                   <span *ngIf="checkboxValue" title="Kullanıcı Ünvanı kullanımdadır.">Kullanıcı Ünvanı Aktif</span>

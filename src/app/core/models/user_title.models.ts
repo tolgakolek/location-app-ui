@@ -1,5 +1,7 @@
 import { BaseModel } from './base.models';
 
-export class Sites extends BaseModel{
+export class UserTitle extends BaseModel{
     user_title_id?:number;
+    name:string;
+    
 }

@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Build } from '../../../core/models/build.models';
 import { Campus } from '../../../core/models/campus.models';
 import { CampusService } from '../../../core/services/campus.service'
-import { asapScheduler } from 'rxjs';
 import { SitesService } from 'src/app/core/services/sites.service';
 import { BuildService } from 'src/app/core/services/build.service';
 @Component({
@@ -17,8 +16,6 @@ import { BuildService } from 'src/app/core/services/build.service';
  * Dashboard-1 component: handling the dashboard-1 with sidebar and content
  */
 export class AddBuildComponent implements OnInit {
-
-  // bread crumb items
   breadCrumbItems: Array<{}>;
   formValidation: FormGroup;
   submitControl: boolean;

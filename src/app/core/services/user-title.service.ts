@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Sites } from '../models/sites.models';
+import { UserRole } from '../models/user_role.models';
+import { UserTitle } from '../models/user_title.models';
 @Injectable({ providedIn: 'root' })
-export class SitesService {
-    sites: any;
-    url = "http://localhost:8080/site/";
+export class UserTitleService {
+    userRole: UserTitle[];
+    url = "http://localhost:8080//usertitle/";
     headerDict = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -15,17 +16,18 @@ export class SitesService {
       };
      
     constructor(private http: HttpClient) {
-        this.getSites().subscribe(data => this.sites = data);
+        this.getUserTitles().subscribe(data => this.userRole = data);
     }
 
-    getSites() : any {
+    getUserTitles() : any {
         return this.http.get(this.url + "list/");
     }
 
-    postSites( site:any)  {
-        this.http.post(this.url, JSON.stringify(site), this.requestOptions)
+    postUserTitle( userTitle:UserTitle)  {
+        this.http.post(this.url, JSON.stringify(userTitle), this.requestOptions)
             .subscribe(response => {
-                this.getSites();
+              console.log(response);
+                this.getUserTitles();
                 return true;
             }, error => { return false; });
     }
