@@ -1,34 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserContactTypes } from '../models/user_contact_type.models';
+import { Observable } from "rxjs/Rx";
+import { map } from "rxjs/internal/operators";
+
+const USERCONTACTTYPE_PATH = "http://localhost:8080//usercontacttype/";
+
 @Injectable({ providedIn: 'root' })
 export class UserContactTypeService {
-    userContactType: UserContactTypes[];
-    url = "http://localhost:8080//usercontacttype/";
-    headerDict = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'charset':'utf-8',
+  userContactType: UserContactTypes[];
+  headerDict = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'charset': 'utf-8',
+  }
+  requestOptions = {
+    headers: new HttpHeaders(this.headerDict),
+  };
+
+  constructor(private http: HttpClient) { }
+
+  getAll(): Observable<UserContactTypes[]> {
+    return this.http.get<UserContactTypes[]>(USERCONTACTTYPE_PATH + "list/");
+  }
+
+  save(userContactType: UserContactTypes): Observable<any> {
+    return this.http.post(USERCONTACTTYPE_PATH, JSON.stringify(userContactType), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
       }
-    requestOptions = {                                                                                                                                                                                 
-        headers: new HttpHeaders(this.headerDict), 
-      };
-     
-    constructor(private http: HttpClient) {
-        this.getUserContactTypes().subscribe(data => this.userContactType = data);
-    }
-
-    getUserContactTypes() : any {
-        return this.http.get(this.url + "list/");
-    }
-
-    postUserContactType( userContactType:UserContactTypes)  {
-        this.http.post(this.url, JSON.stringify(userContactType), this.requestOptions)
-            .subscribe(response => {
-              console.log(response);
-                this.getUserContactTypes();
-                return true;
-            }, error => { return false; });
-    }
+    ));
+  }
 }
 

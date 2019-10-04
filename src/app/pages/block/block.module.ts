@@ -13,9 +13,11 @@ import { UIModule } from '../../shared/ui/ui.module';
 import { BlockRoutingModule } from './block-routing';
 
 import { AddBlockComponent } from './add-block/add-block.component';
+import { UpdateBlockComponent } from './update-block/update-block.component';
+import { ListBlockComponent } from './list-block/list-block.component';
 
 @NgModule({
-  declarations: [AddBlockComponent],
+  declarations: [AddBlockComponent, UpdateBlockComponent, ListBlockComponent],
   imports: [
     CommonModule,
     FormsModule,

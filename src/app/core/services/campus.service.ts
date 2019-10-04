@@ -1,36 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Campus } from '../models/campus.models';
-import { delay } from 'q';
+import { Observable } from "rxjs/Rx";
+import { map } from "rxjs/internal/operators";
+
+const CAMPUS_PATH = "http://localhost:8080/campus/";
+
 @Injectable({ providedIn: 'root' })
 export class CampusService {
-    campus: any;
-    url="http://localhost:8080/campus/";
     headerDict = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'charset':'utf-8',
-      }
-    requestOptions = {                                                                                                                                                                                 
-        headers: new HttpHeaders(this.headerDict), 
-      };
-     
-    constructor(private http: HttpClient) {
-        this.getCampus();
+        'charset': 'utf-8',
+    };
+
+    requestOptions = {
+        headers: new HttpHeaders(this.headerDict),
+    };
+
+    constructor(private http: HttpClient) { }
+
+    getAll(): Observable<Campus[]> {
+        return this.http.get<Campus[]>(CAMPUS_PATH + "list/");
     }
 
-
-    getCampus() : any {
-        this.http.get(this.url + "list/").subscribe(data => {this.campus = data});
-        return this.campus;
-    }
-
-    postCampus( campus:Campus)  {
-        this.http.post(this.url, JSON.stringify(campus), this.requestOptions)
-            .subscribe(response => {
-                console.log(this.getCampus());
-                return true;
-            }, error => { return false; });
+    save(campus: Campus): Observable<any> {
+        return this.http.post(CAMPUS_PATH, JSON.stringify(campus),this.requestOptions).pipe(map(
+            res => {
+                if (res) {
+                    return res;
+                } else {
+                    return {};
+                }
+            }
+        ));
     }
 }
 

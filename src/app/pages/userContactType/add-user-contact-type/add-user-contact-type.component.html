@@ -9,9 +9,9 @@
               </p>
               <form (ngSubmit)="submit()" [formGroup]="formValidation">
                   <div class="form-group">
-                      <label>Oda Türünün Adı<span class="text-danger">*</span></label>
+                      <label>İletişim Türünün Adı<span class="text-danger">*</span></label>
                       <input type="text" name="nick" formControlName="userContactTypeName"
-                      placeholder="iletişim Türünün Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userContactTypeName.errors}">
+                      placeholder="İletişim Türünün Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userContactTypeName.errors}">
                       <div *ngIf="submitControl && basic.userContactTypeName.errors" class="invalid-feedback">
                           <span *ngIf="basic.userContactTypeName.errors.required">Lütfen iletişim türünün adını giriniz.</span>
                       </div>
@@ -21,8 +21,8 @@
                           <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
                            type="checkbox">
                           <label for="checkbox6a">
-                                  <span *ngIf="checkboxValue" title="iletişim Türü kullanımdadır.">iletişim Tür Aktif</span>
-                                  <span *ngIf="!checkboxValue" title="iletişim Türü kullanımda değildir.">iletişim Tür Pasif</span>
+                                  <span *ngIf="checkboxValue" title="İletişim Türü kullanımdadır.">İletişim Tür Aktif</span>
+                                  <span *ngIf="!checkboxValue" title="İletişim Türü kullanımda değildir.">İletişim Tür Pasif</span>
                           </label>
                       </div>
                   </div>

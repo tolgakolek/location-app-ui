@@ -18,7 +18,7 @@ export class AddUserContactTypeComponent implements OnInit {
   success=false;
   constructor(public formBuilder: FormBuilder,private http:HttpClient, private userContactTypeService:UserContactTypeService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Oda Türü', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni İletişim Türü', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
       userContactTypeName: ['', [Validators.required]],
@@ -35,14 +35,22 @@ export class AddUserContactTypeComponent implements OnInit {
     if(this.formValidation.status=="VALID"){
       this.userContactType={
         name: this.formValidation.value.userContactTypeName,
-        isActive :this.checkboxValue
+        active :this.checkboxValue
       };
-      this.userContactTypeService.postUserContactType(this.userContactType);
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
+      this.userContactTypeService.save(this.userContactType).subscribe(res => {
+        if(res.isSuccess){this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if(!res.isSuccess){
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else{
+          console.log("Bağlanamadı");
+        }
+      });
     
     }
   }

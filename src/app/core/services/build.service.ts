@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Build } from '../models/build.models';
+import { Observable } from "rxjs/Rx";
+import { map } from "rxjs/internal/operators";
+const BUILD_PATH = "http://localhost:8080/build/";
 @Injectable({ providedIn: 'root' })
 export class BuildService {
-    build: any;
+  build: any;
 
-    url="http://localhost:8080/build/";
-    headerDict = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'charset':'utf-8',
+  headerDict = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'charset': 'utf-8',
+  }
+  requestOptions = {
+    headers: new HttpHeaders(this.headerDict),
+  };
+
+  constructor(private http: HttpClient) { }
+
+  getAll(): Observable<Build[]> {
+    return this.http.get<Build[]>(BUILD_PATH + "list/");
+  }
+
+  save(build: Build,campusId:number,siteId:number): Observable<any> {
+    return this.http.post(BUILD_PATH+"campus/"+campusId.toString()+"/site/"+siteId.toString(), JSON.stringify(build), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
       }
-    requestOptions = {                                                                                                                                                                                 
-        headers: new HttpHeaders(this.headerDict), 
-      };
-     
-    constructor(private http: HttpClient) {
-        
-    }
-
-    postBuild( build:Build,campusId,siteId)  {
-        this.http.post(this.url+"campus/"+campusId.toString() + "/site/" + siteId.toString(), JSON.stringify(build), this.requestOptions)
-            .subscribe(response => {
-                return true;
-            }, error => { return false; });
-    }
+    ));
+  }
 }
 
-  

@@ -1,53 +1,53 @@
 <div class="container-fluid">
-  <app-page-title title="Yeni Cihaz" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Yeni Kat" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <div class="row">
     <div class="col-12">
       <div class="card-box">
         <h4 class="header-title">Yeni Kat Ekle</h4>
         <p class="sub-header">
-          Yeni Cihaz eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+          Yeni Kat eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
           <div _ngcontent-pnh-c6="" class="form-group mb-3">
-            <label>Lütfen Bina Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
+            <label>Lütfen Bir Blok Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setBlockId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="blockId">
+              <option _ngcontent-pnh-c6="" selected="selected" value="0">Blok Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let block of blocks" [ngValue]="block.id">
+                {{ block.name }}</option>
             </select>
           </div>
           <div _ngcontent-pnh-c6="" class="form-group mb-3">
-            <label>Lütfen Blok Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
+            <label>Lütfen Bir Bina Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setBuildId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="buildId">
+              <option _ngcontent-pnh-c6="" selected="selected" value="0">Bina Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let build of builds" [ngValue]="build.id">
+                {{ build.name }}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Kat Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Cihaz adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
+            <input type="text" name="nick" formControlName="floorName" placeholder="Kat adı giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.floorName.errors}">
+            <div *ngIf="submitControl && basic.floorName.errors" class="invalid-feedback">
+              <span *ngIf="basic.floorName.errors.required">Lütfen kat adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
             <label>Map<span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Özellik giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Teknoloji giriniz.</span>
+            <input type="text" name="nick" formControlName="floorMap" placeholder="Map giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.floorMap.errors}">
+            <div *ngIf="submitControl && basic.floorMap.errors" class="invalid-feedback">
+              <span *ngIf="basic.floorMap.errors.required">Lütfen map giriniz.</span>
             </div>
           </div>
           <div class="form-group">
             <label>Other<span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Özellik giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
+            <input type="text" name="nick" formControlName="floorOther" placeholder="Diğer Özellik giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.floorOther.errors}">
+            <div *ngIf="submitControl && basic.floorOther.errors" class="invalid-feedback">
+              <span *ngIf="basic.floorOther.errors.required">Lütfen diğer özellik giriniz.</span>
             </div>
           </div>
           <div class="form-group">
@@ -55,8 +55,8 @@
               <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
                 [ngModelOptions]="{standalone: true}" type="checkbox">
               <label for="checkbox6a">
-                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Kat Aktif</span>
-                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Kat Pasif</span>
+                <span *ngIf="checkboxValue" title="Kat kullanımdadır.">Kat Aktif</span>
+                <span *ngIf="!checkboxValue" title="Kat kullanımda değildir.">Kat Pasif</span>
               </label>
             </div>
           </div>

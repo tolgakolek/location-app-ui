@@ -5,5 +5,4 @@ export class Department extends BaseModel{
     name: string;
     description: string;
     other:string;
-    sub_unit_id:number;
 }

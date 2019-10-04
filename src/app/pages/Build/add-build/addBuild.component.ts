@@ -21,37 +21,32 @@ export class AddBuildComponent implements OnInit {
   submitControl: boolean;
   build: Build;
   campus: Campus[] = [];
-  site: any[] = [];
+  sites: any[] = [];
   checkboxValue = false;
   campusId = 0;
   siteId = 0;
   success = false;
-  url = "http://localhost:8080/build/";
-  constructor(public formBuilder: FormBuilder, private http: HttpClient, private campusService:CampusService,private sitesService:SitesService,private buildService:BuildService) { }
+  constructor(public formBuilder: FormBuilder, private campusService: CampusService, private sitesService: SitesService, private buildService: BuildService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Home', path: '/' }, { label: 'Yeni Bina', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Bina', path: '/', active: true }];
     this.formValidation = this.formBuilder.group({
-      buildName: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-      buildGps: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
+      buildName: ['', [Validators.required]],
+      buildGps: ['', [Validators.required]],
       textareaAddress: ['', [Validators.required]],
       textareaProperties: ['', [Validators.required]]
     });
+    this.campusService.getAll().subscribe(data => {
+      this.campus = data;
+    });
+    this.sitesService.getAll().subscribe(data => {
+      this.sites = data;
+    });
     this.submitControl = false;
-    this.campus=this.campusService.getCampus();
   }
 
   get basic() {
     return this.formValidation.controls;
   }
-
-  getCampus() {
-    return  this.campus;
-  }
-
-  getSite() {
-    return this.site.filter(site => site.active);
-  }
-
   setCampusId(campus: any): void {
     this.campusId = campus;
   }
@@ -68,7 +63,7 @@ export class AddBuildComponent implements OnInit {
         address: this.formValidation.value.textareaAddress,
         properties: this.formValidation.value.textareaProperties,
         gps: this.formValidation.value.gps,
-        isActive: this.checkboxValue,
+        active: this.checkboxValue,
       };
       if (this.siteId != 0) {
         this.build.site_id = this.siteId;
@@ -76,14 +71,22 @@ export class AddBuildComponent implements OnInit {
       else {
         this.build.campus_id = this.campusId;
       }
-      this.buildService.postBuild(this.build,this.campusId,this.siteId);
-      
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
-     
+      this.buildService.save(this.build, this.campusId, this.siteId).subscribe(res => {
+        if (res.isSuccess) {
+        this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if (!res.isSuccess) {
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else {
+          console.log("Bağlanamadı");
+        }
+      });
+
     }
   }
 }

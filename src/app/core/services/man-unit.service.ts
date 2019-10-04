@@ -1,34 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MainUnits } from '../models/main_units.models';
+import { Observable } from "rxjs/Rx";
+import { map } from "rxjs/internal/operators";
+
+const MAINUNIT_PATH = "http://localhost:8080/mainunit/";
+
 @Injectable({ providedIn: 'root' })
 export class MainUnitService {
-    mainUnits: MainUnits[];
-    url = "http://localhost:8080/mainunit/";
-    headerDict = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'charset':'utf-8',
+  headerDict = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'charset': 'utf-8',
+  }
+  requestOptions = {
+    headers: new HttpHeaders(this.headerDict),
+  };
+
+  constructor(private http: HttpClient) { }
+
+  getAll(): Observable<MainUnits[]> {
+    return this.http.get<MainUnits[]>(MAINUNIT_PATH + "list/");
+  }
+
+  save(mainUnit: MainUnits): Observable<any> {
+    return this.http.post(MAINUNIT_PATH, JSON.stringify(mainUnit), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
       }
-    requestOptions = {                                                                                                                                                                                 
-        headers: new HttpHeaders(this.headerDict), 
-      };
-     
-    constructor(private http: HttpClient) {
-        this.getMainUnits().subscribe(data => this.mainUnits = data);
-    }
-
-    getMainUnits() : any {
-        return this.http.get(this.url + "list/");
-    }
-
-    postMainUnit( mainUnit:MainUnits)  {
-        this.http.post(this.url, JSON.stringify(mainUnit), this.requestOptions)
-            .subscribe(response => {
-              console.log(response);
-                this.getMainUnits();
-                return true;
-            }, error => { return false; });
-    }
+    ));
+  }
 }
 

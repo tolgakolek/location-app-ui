@@ -7,7 +7,7 @@ import { NgbDropdownModule, NgbProgressbarModule, NgbCollapseModule, NgbModule ,
 import { UIModule } from '../../shared/ui/ui.module';
 import { AddCampusRoutingModule } from './campus-routing';
 
-import { AddCampusComponent } from './AddCampus/addCampus.component';
+import { AddCampusComponent } from './add-campus/addCampus.component';
 import { ListCampusComponent } from './list-campus/list-campus.component';
 
 @NgModule({

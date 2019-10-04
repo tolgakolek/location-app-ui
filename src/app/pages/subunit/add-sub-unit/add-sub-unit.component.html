@@ -7,22 +7,22 @@
         <p class="sub-header">
           Yeni Alt Birim eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
           <div _ngcontent-pnh-c6="" class="form-group mb-3">
             <label>Lütfen Ana Birim Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setMainUnitId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="mainUnitId">
+              <option _ngcontent-pnh-c6="" selected="selected" value="0">Ana Birim Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let mainUnit of mainUnits" [ngValue]="mainUnit.id">
+                {{ mainUnit.name }}</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Birim Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Cihaz adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Birim adını giriniz.</span>
+            <label>Alt Birim Adı<span class="text-danger">*</span></label>
+            <input type="text" name="nick" formControlName="mainUnitName" placeholder="Alt birim adı giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.mainUnitName.errors}">
+            <div *ngIf="submitControl && basic.mainUnitName.errors" class="invalid-feedback">
+              <span *ngIf="basic.mainUnitName.errors.required">Lütfen Alt Birim adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
@@ -30,8 +30,8 @@
               <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
                 [ngModelOptions]="{standalone: true}" type="checkbox">
               <label for="checkbox6a">
-                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Birim Aktif</span>
-                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Birim Pasif</span>
+                <span *ngIf="checkboxValue" title="Alt birim kullanımdadır.">Alt Birim Aktif</span>
+                <span *ngIf="!checkboxValue" title="Alt birim kullanımda değildir.">Alt Birim Pasif</span>
               </label>
             </div>
           </div>

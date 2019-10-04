@@ -1,3 +1,74 @@
-<p>
-  add-room works!
-</p>
+<div class="container-fluid">
+    <app-page-title title="Yeni Oda" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-12  justify-content-center">
+            <div class="card-box">
+                <h4 class="header-title">Yeni Oda Ekle</h4>
+                <p class="sub-header">
+                    Yeni Oda eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+                </p>
+                <form (ngSubmit)="submit()" [formGroup]="formValidation">
+                    <div class="form-group">
+                        <label>Oda Adı<span class="text-danger">*</span></label>
+                        <input type="text" name="name" formControlName="roomName" placeholder="Oda Adını Girin"
+                            class="form-control" [ngClass]="{'is-invalid': submitControl && basic.roomName.errors}">
+                        <div *ngIf="submitControl && basic.roomName.errors" class="invalid-feedback">
+                            <span *ngIf="basic.roomName.errors.required">Lütfen oda adını giriniz.</span>
+                        </div>
+                    </div>
+                    <div _ngcontent-pnh-c6="" class="form-group mb-3">
+                        <label>Lütfen Bir Kat Seçin</label>
+                        <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
+                            (ngModelChange)="setFloorId($event)" [ngModelOptions]="{standalone: true}"
+                            [ngModel]="floorId">
+                            <option _ngcontent-pnh-c6="" selected="selected" value="0">Kat Seçiniz</option>
+                            <option _ngcontent-pnh-c6="" *ngFor="let floor of floors" [ngValue]="floor.id">
+                                {{ floor.name }}</option>
+                        </select>
+                    </div>
+                    <div _ngcontent-pnh-c6="" class="form-group mb-3">
+                        <label>Lütfen Bir Oda Türü Seçin</label>
+                        <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
+                            (ngModelChange)="setRoomTypeId($event)" [ngModelOptions]="{standalone: true}"
+                            [ngModel]="roomTypeId">
+                            <option _ngcontent-pnh-c6="" selected="selected" value="0">Oda Türü Seçiniz</option>
+                            <option _ngcontent-pnh-c6="" *ngFor="let roomType of roomTypes" [ngValue]="roomType.id">
+                                {{ roomType.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Map Bilgisi<span class="text-danger">*</span></label>
+                        <input type="text" name="gps" formControlName="roomMap" placeholder="Map Girin"
+                            class="form-control" [ngClass]="{'is-invalid': submitControl && basic.roomMap.errors}">
+                        <div *ngIf="submitControl && basic.roomMap.errors" class="invalid-feedback">
+                            <span *ngIf="basic.roomMap.errors.required">Lütfen map bilgilerini giriniz.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox checkbox-blue p-1">
+                            <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
+                                [ngModelOptions]="{standalone: true}" type="checkbox">
+                            <label for="checkbox6a">
+                                <span *ngIf="checkboxValue" title="Oda kullanımdadır.">Oda Aktif</span>
+                                <span *ngIf="!checkboxValue" title="Oda kullanımda değildir.">Oda Pasif</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group text-center" *ngIf="success">
+                        <ngb-alert [dismissible]="false" (close)="success=false"
+                            class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+                            Yeni <strong>Oda</strong>
+                            başarılı bir şekilde eklendi.</ngb-alert>
+                    </div>
+                    <div class="form-group text-right mb-0">
+                        <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                            Kaydet
+                        </button>
+                        <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                            Vazgeç
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

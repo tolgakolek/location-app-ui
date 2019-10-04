@@ -18,7 +18,7 @@ export class AddUserRoleComponent implements OnInit {
   success=false;
   constructor(public formBuilder: FormBuilder,private http:HttpClient, private userRoleService:UserRoleService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni KUllanıcı Rolü', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Kullanıcı Rolü', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
       userRoleName: ['', [Validators.required]],
@@ -37,14 +37,22 @@ export class AddUserRoleComponent implements OnInit {
       this.userRole={
         name: this.formValidation.value.userRoleName,
         description: this.formValidation.value.userRoleDescription,
-        isActive :this.checkboxValue
+        active :this.checkboxValue
       };
-      this.userRoleService.postUserRole(this.userRole);
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
+      this.userRoleService.save(this.userRole).subscribe(res => {
+        if(res.isSuccess){this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if(!res.isSuccess){
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else{
+          console.log("Bağlanamadı");
+        }
+      });
     
     }
   }

@@ -5,16 +5,15 @@
             <div class="card-box">
                 <h4 class="header-title">Yeni Bina Ekle</h4>
                 <p class="sub-header">
-                    Yeni site eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+                    Yeni bina eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
                 </p>
                 <form (ngSubmit)="submit()" [formGroup]="formValidation">
                     <div class="form-group">
                         <label>Bina Adı<span class="text-danger">*</span></label>
-                        <input type="text" name="name" formControlName="buildName" placeholder="Kampüs Adını Girin"
+                        <input type="text" name="name" formControlName="buildName" placeholder="Bina Adını Girin"
                             class="form-control" [ngClass]="{'is-invalid': submitControl && basic.buildName.errors}">
                         <div *ngIf="submitControl && basic.buildName.errors" class="invalid-feedback">
                             <span *ngIf="basic.buildName.errors.required">Lütfen bina adını giriniz.</span>
-                            <span *ngIf="basic.buildName.errors.pattern">Özel karakterleri kullanmayınız.</span>
                         </div>
                     </div>
 
@@ -24,7 +23,7 @@
                             (ngModelChange)="setCampusId($event)" [ngModelOptions]="{standalone: true}"
                             [ngModel]="campusId">
                             <option _ngcontent-pnh-c6="" selected="selected" value="0">Kampüs Seçiniz</option>
-                            <option _ngcontent-pnh-c6="" *ngFor="let campus of getCampus();" [ngValue]="campus.id">
+                            <option _ngcontent-pnh-c6="" *ngFor="let campus of campus" [ngValue]="campus.id">
                                 {{ campus.name }}</option>
                         </select>
                     </div>
@@ -35,7 +34,7 @@
                             (ngModelChange)="setSiteId($event)" [ngModelOptions]="{standalone: true}"
                             [ngModel]="siteId">
                             <option _ngcontent-pnh-c6="" selected="selected" value="0">Site Seçiniz</option>
-                            <option _ngcontent-pnh-c6="" *ngFor="let site of sitesService.sites" [ngValue]="site.id">
+                            <option _ngcontent-pnh-c6="" *ngFor="let site of sites" [ngValue]="site.id">
                                 {{ site.name }}</option>
                         </select>
                     </div>

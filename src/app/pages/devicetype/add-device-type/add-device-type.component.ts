@@ -36,14 +36,23 @@ export class AddDeviceTypeComponent implements OnInit {
     if(this.formValidation.status=="VALID"){
       this.deviceType={
         name: this.formValidation.value.deviceTypeName,
-        isActive :this.checkboxValue
+        active :this.checkboxValue
       };
-      this.deviceTypeService.postDeviceTypes(this.deviceType);
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
+      console.log(this.deviceType);
+      this.deviceTypeService.save(this.deviceType).subscribe(res => {
+        if(res.isSuccess){this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if(!res.isSuccess){
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else{
+          console.log("Bağlanamadı");
+        }
+      });
     
     }
   }

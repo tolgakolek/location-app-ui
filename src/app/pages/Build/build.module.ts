@@ -12,7 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import { UIModule } from '../../shared/ui/ui.module';
 import { AddCampusRoutingModule } from './build-routing';
 
-import { AddBuildComponent } from './AddBuild/addBuild.component';
+import { AddBuildComponent } from './add-build/addBuild.component';
 
 @NgModule({
   declarations: [AddBuildComponent],

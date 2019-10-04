@@ -36,14 +36,22 @@ export class AddRoomTypeComponent implements OnInit {
     if(this.formValidation.status=="VALID"){
       this.roomType={
         name: this.formValidation.value.roomTypeName,
-        isActive :this.checkboxValue
+        active :this.checkboxValue
       };
-      this.roomTypeService.postRoomTypes(this.roomType);
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
+      this.roomTypeService.save(this.roomType).subscribe(res => {
+        if(res.isSuccess){this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if(!res.isSuccess){
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else{
+          console.log("Bağlanamadı");
+        }
+      });
     
     }
   }

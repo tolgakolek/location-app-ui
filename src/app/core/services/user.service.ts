@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../models/users.models';
 
-import { User } from '../models/auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
-    constructor(private http: HttpClient) { }
+    headerDict = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'charset': 'utf-8',
+    };
 
-    getAll() {
-        return this.http.get<User[]>(`/api/login`);
-    }
+    requestOptions = {
+        headers: new HttpHeaders(this.headerDict),
+    };
+
+    constructor(private http: HttpClient) { }
+    
+    
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Sites } from '../models/sites.models';
+import { SubUnits } from '../models/sub_units.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 
-const SITES_PATH = "http://localhost:8080/site/";
+const SUBUNIT_PATH = "http://localhost:8080/subunit/";
 
 @Injectable({ providedIn: 'root' })
-export class SitesService {
+export class SubUnitService {
     headerDict = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -19,12 +19,12 @@ export class SitesService {
 
     constructor(private http: HttpClient) { }
 
-    getAll(): Observable<Sites[]> {
-        return this.http.get<Sites[]>(SITES_PATH + "list/");
+    getAll(): Observable<SubUnits[]> {
+        return this.http.get<SubUnits[]>(SUBUNIT_PATH + "list/");
     }
 
-    save(sites: Sites,campusId:number): Observable<any> {
-        return this.http.post(SITES_PATH+campusId.toString(), JSON.stringify(sites), this.requestOptions).pipe(map(
+    save(subUnit: SubUnits,mainUnitId:number): Observable<any> {
+        return this.http.post(SUBUNIT_PATH+mainUnitId.toString(), JSON.stringify(subUnit), this.requestOptions).pipe(map(
             res => {
                 if (res) {
                     return res;

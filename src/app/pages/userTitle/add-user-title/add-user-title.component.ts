@@ -19,7 +19,7 @@ export class AddUserTitleComponent implements OnInit {
   success=false;
   constructor(public formBuilder: FormBuilder,private http:HttpClient, private userTitleService:UserTitleService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni KUllanıcı Rolü', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Kullanıcı Ünvanı', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
       userTitleName: ['', [Validators.required]]
@@ -36,14 +36,22 @@ export class AddUserTitleComponent implements OnInit {
     if(this.formValidation.status=="VALID"){
       this.userTitle={
         name:this.formValidation.value.userTitleName,
-        isActive:this.checkboxValue  
+        active:this.checkboxValue  
       };
-      this.userTitleService.postUserTitle(this.userTitle);
-      this.success=true;
-      setTimeout(() => this.success = false, 2000);
-      setTimeout(() => this.checkboxValue = false, 2000);
-      setTimeout(() => this.formValidation.reset(), 2000);
-      setTimeout(() => this.submitControl=false, 2000);
+      this.userTitleService.save(this.userTitle).subscribe(res => {
+        if(res.isSuccess){this.success = true;
+          setTimeout(() => this.success = false, 2000);
+          setTimeout(() => this.checkboxValue = false, 2000);
+          setTimeout(() => this.formValidation.reset(), 2000);
+          setTimeout(() => this.submitControl = false, 2000);
+        }
+        else if(!res.isSuccess){
+          console.log("Sunucu Tarafından Başarısız Oldu.");
+        }
+        else{
+          console.log("Bağlanamadı");
+        }
+      });
     
     }
   }

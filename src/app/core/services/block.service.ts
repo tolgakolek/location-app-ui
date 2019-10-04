@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RoomType } from '../models/room_types.models';
+import { Block } from '../models/block.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 
-const ROOMTYPE_PATH = "http://localhost:8080/roomtype/";
-@Injectable({ providedIn: 'root' })
-export class RoomTypeService {
+const BLOCK_PATH = "http://localhost:8080/block/";
+@Injectable({
+  providedIn: 'root'
+})
+export class BlockService {
   headerDict = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -16,14 +18,15 @@ export class RoomTypeService {
     headers: new HttpHeaders(this.headerDict),
   };
 
-  constructor(private http: HttpClient) { }
-
-  getAll(): Observable<RoomType[]> {
-    return this.http.get<RoomType[]>(ROOMTYPE_PATH + "list/");
+  constructor(private http: HttpClient) {
   }
 
-  save(roomType: RoomType): Observable<any> {
-    return this.http.post(ROOMTYPE_PATH, JSON.stringify(roomType), this.requestOptions).pipe(map(
+  getAll(): Observable<Block[]> {
+    return this.http.get<Block[]>(BLOCK_PATH + "list/");
+  }
+
+  save(block: Block,buildId:number): Observable<any> {
+    return this.http.post(BLOCK_PATH+buildId.toString(), JSON.stringify(block), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;
@@ -33,5 +36,5 @@ export class RoomTypeService {
       }
     ));
   }
-}
 
+}

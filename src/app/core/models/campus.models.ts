@@ -4,5 +4,4 @@ export class Campus extends BaseModel{
     id?:number;
     name: string;
     campusSites?: Array<any>;
-    active:boolean;
 }

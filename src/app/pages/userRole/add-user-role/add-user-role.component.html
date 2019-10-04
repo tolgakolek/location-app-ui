@@ -19,7 +19,7 @@
                   <div class="form-group">
                     <label>Özellik<span class="text-danger">*</span></label>
                     <input type="text" name="nick" formControlName="userRoleDescription"
-                    placeholder="Kullanıcı Rolü Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleDescription.errors}">
+                    placeholder="Özellik Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleDescription.errors}">
                     <div *ngIf="submitControl && basic.userRoleDescription.errors" class="invalid-feedback">
                         <span *ngIf="basic.userRoleDescription.errors.required">Lütfen Özellik giriniz.</span>
                     </div>
