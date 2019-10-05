@@ -4,11 +4,14 @@ import { DecimalPipe } from '@angular/common';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 
-import { Table, SearchResult } from './advanced.model';
+import { Table, SearchResult } from '../models/table.model';
 
-import { tableData } from './data';
+import { tableData } from '../../pages/campus/list-campus/data';
 
-import { SortDirection } from './advanced-sortable.directive';
+
+import { SortDirection } from '../../pages/campus/list-campus/advanced-sortable.directive';
+import { Campus } from '../models/campus.models';
+import { CampusService } from './campus.service';
 
 interface State {
     page: number;
@@ -48,19 +51,21 @@ function sort(tables: Table[], column: string, direction: string): Table[] {
  * @param term Search the value
  */
 function matches(tables: Table, term: string, pipe: PipeTransform) {
+    /*pipe.transform(tables.active).includes(term);  number include
+    ((tables.active == true) ? 'Aktif' : 'Pasif').toUpperCase().includes(term) boolen*/
+    const active=(tables.active == true) ? 'Aktif' : 'Pasif';
     return tables.name.toLowerCase().includes(term)
-        || tables.position.toLowerCase().includes(term)
-        || tables.office.toLowerCase().includes(term)
-        || pipe.transform(tables.age).includes(term)
-        || tables.date.toLowerCase().includes(term)
-        || tables.salary.toLowerCase().includes(term);
+        || active.toLowerCase().includes(term);
 }
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class AdvancedService {
+export class TableService {
+    campus:Campus[]=[];
+    
+    
     // tslint:disable-next-line: variable-name
     private _loading$ = new BehaviorSubject<boolean>(true);
     // tslint:disable-next-line: variable-name
@@ -82,7 +87,7 @@ export class AdvancedService {
         totalRecords: 0
     };
 
-    constructor(private pipe: DecimalPipe) {
+    constructor(private pipe: DecimalPipe,private campusService:CampusService) {
         this._search$.pipe(
             tap(() => this._loading$.next(true)),
             debounceTime(200),
@@ -93,7 +98,9 @@ export class AdvancedService {
             this._tables$.next(result.tables);
             this._total$.next(result.total);
         });
-
+        this.campusService.getAll().subscribe(data => {
+            this.campus = data;
+          });
         this._search$.next();
     }
 
@@ -139,9 +146,8 @@ export class AdvancedService {
      */
     private _search(): Observable<SearchResult> {
         const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
-
         // 1. sort
-        let tables = sort(tableData, sortColumn, sortDirection);
+        let tables = sort(this.campus, sortColumn, sortDirection);
 
         // 2. filter
         tables = tables.filter(table => matches(table, searchTerm, this.pipe));
@@ -154,7 +160,7 @@ export class AdvancedService {
         if (this.endIndex > this.totalRecords) {
             this.endIndex = this.totalRecords;
         }
-        tables = tables.slice(this._state.startIndex - 1, this._state.endIndex - 1);
+        tables = tables.slice(this._state.startIndex - 1, this._state.endIndex );
 
         return of(
             { tables, total }

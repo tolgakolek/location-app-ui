@@ -19,7 +19,7 @@ export class AddUserTitleComponent implements OnInit {
   success=false;
   constructor(public formBuilder: FormBuilder,private http:HttpClient, private userTitleService:UserTitleService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Kullanıcı Ünvanı', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Kullanıcı Ünvanı ', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
       userTitleName: ['', [Validators.required]]

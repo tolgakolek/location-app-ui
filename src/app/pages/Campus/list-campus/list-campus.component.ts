@@ -3,18 +3,18 @@ import { DecimalPipe } from '@angular/common';
 
 import { Observable } from 'rxjs';
 
-import { Table } from './advanced.model';
+import { Table } from '../../../core/models/table.model';
 
 import { tableData } from './data';
 
-import { AdvancedService } from './advanced.service';
+import { TableService } from '../../../core/services/table.service';
 import { AdvancedSortableDirective, SortEvent } from './advanced-sortable.directive';
 
 @Component({
   selector: 'app-list-campus',
   templateUrl: './list-campus.component.html',
   styleUrls: ['./list-campus.component.scss'],
-  providers: [AdvancedService, DecimalPipe]
+  providers: [TableService, DecimalPipe]
 })
 
 /**
@@ -32,7 +32,7 @@ export class ListCampusComponent implements OnInit {
 
   @ViewChildren(AdvancedSortableDirective) headers: QueryList<AdvancedSortableDirective>;
 
-  constructor(public service: AdvancedService) {
+  constructor(public service: TableService) {
     this.tables$ = service.tables$;
     this.total$ = service.total$;
   }
