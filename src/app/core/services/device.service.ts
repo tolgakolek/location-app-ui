@@ -4,8 +4,9 @@ import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 import { Devices } from '../models/devices.models';
 import { DeviceTypeRoutingModule } from 'src/app/pages/devicetype/devicetype-routing';
+import { DEVİCE_PATH } from '../models/path.models';
 
-const DEVİCETYPE_PATH = "http://localhost:8080/device/";
+
 
 @Injectable({ providedIn: 'root' })
 export class DeviceService {
@@ -23,11 +24,11 @@ export class DeviceService {
   }
 
   getAll(): Observable<Devices[]> {
-    return this.http.get<Devices[]>(DEVİCETYPE_PATH + "list/");
+    return this.http.get<Devices[]>(DEVİCE_PATH + "list/");
   }
 
   save(device: Devices,deviceTypeId:number): Observable<any> {
-    return this.http.post(DEVİCETYPE_PATH+deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
+    return this.http.post(DEVİCE_PATH+deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

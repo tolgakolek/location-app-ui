@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RoomType } from '../models/room_types.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { ROOMTYPE_PATH } from '../models/path.models';
 
-const ROOMTYPE_PATH = "http://localhost:8080/roomtype/";
+
 @Injectable({ providedIn: 'root' })
 export class RoomTypeService {
   headerDict = {

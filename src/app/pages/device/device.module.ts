@@ -14,9 +14,10 @@ import { DeviceRoutingModule } from './device-routing';
 import { AddDeviceComponent } from './add-device/add-device.component';
 import { UpdateDeviceComponent } from './update-device/update-device.component';
 import { ListDeviceComponent } from './list-device/list-device.component';
+import { DeviceAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/device-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddDeviceComponent, UpdateDeviceComponent, ListDeviceComponent],
+  declarations: [AddDeviceComponent, UpdateDeviceComponent, ListDeviceComponent,DeviceAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -32,6 +33,7 @@ import { ListDeviceComponent } from './list-device/list-device.component';
     NgbCollapseModule,
     UIModule,
     DeviceRoutingModule
+    
   ]
 })
 export class DeviceModule { }

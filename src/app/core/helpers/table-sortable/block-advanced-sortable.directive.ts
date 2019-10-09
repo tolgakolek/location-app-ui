@@ -2,7 +2,7 @@ import { Directive, EventEmitter, Input, Output } from '@angular/core';
 export type SortDirection = 'asc' | 'desc' | '';
 const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
 
-export interface SortEvent {
+export interface BlockSortEvent {
   column: string;
   direction: SortDirection;
 }
@@ -18,12 +18,12 @@ export interface SortEvent {
   }
 })
 
-export class AdvancedSortableDirective {
+export class BlockAdvancedSortableDirective {
 
   constructor() { }
   @Input() sortable: string;
   @Input() direction: SortDirection = '';
-  @Output() sort = new EventEmitter<SortEvent>();
+  @Output() sort = new EventEmitter<BlockSortEvent>();
 
   rotate() {
     this.direction = rotate[this.direction];

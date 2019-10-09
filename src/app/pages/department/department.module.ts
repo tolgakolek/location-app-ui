@@ -14,9 +14,10 @@ import { DepartmentRoutingModule } from './department-routing';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { UpdateDepartmentComponent } from './update-department/update-department.component';
 import { ListDepartmentComponent } from './list-department/list-department.component';
+import { DepartmentAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/department-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddDepartmentComponent, UpdateDepartmentComponent, ListDepartmentComponent],
+  declarations: [AddDepartmentComponent, UpdateDepartmentComponent, ListDepartmentComponent, DepartmentAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

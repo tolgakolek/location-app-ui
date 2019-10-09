@@ -63,8 +63,8 @@ export class AddFloorComponent implements OnInit {
     if (this.formValidation.status == "VALID") {
       this.floor = {
         name: this.formValidation.value.floorName,
-        map: this.formValidation.value.map,
-        other: this.formValidation.value.other,
+        map: this.formValidation.value.floorMap,
+        other: this.formValidation.value.floorOther,
         active: this.formValidation.value.active
       };
       if (this.blockId != 0) {

@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Sites } from '../models/sites.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { SITES_PATH } from '../models/path.models';
 
-const SITES_PATH = "http://localhost:8080/site/";
+
 
 @Injectable({ providedIn: 'root' })
 export class SitesService {

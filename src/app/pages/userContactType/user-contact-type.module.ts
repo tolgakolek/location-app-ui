@@ -13,10 +13,11 @@ import { UserContactTypeRoutingModule } from './user-contact-type-routing';
 import { AddUserContactTypeComponent } from './add-user-contact-type/add-user-contact-type.component';
 import { UpdateUserContactTypeComponent } from './update-user-contact-type/update-user-contact-type.component';
 import { ListUserContactTypeComponent } from './list-user-contact-type/list-user-contact-type.component';
+import { UserContactTypeSortableDirective } from 'src/app/core/helpers/table-sortable/user-contact-type-advanced-sortable.directive';
 
 
 @NgModule({
-  declarations: [AddUserContactTypeComponent, UpdateUserContactTypeComponent, ListUserContactTypeComponent],
+  declarations: [AddUserContactTypeComponent, UpdateUserContactTypeComponent, ListUserContactTypeComponent,UserContactTypeSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

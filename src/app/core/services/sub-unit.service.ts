@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SubUnits } from '../models/sub_units.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
-
-const SUBUNIT_PATH = "http://localhost:8080/subunit/";
+import { SUBUNIT_PATH } from '../models/path.models';
 
 @Injectable({ providedIn: 'root' })
 export class SubUnitService {

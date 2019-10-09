@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Block } from '../models/block.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { BLOCK_PATH } from '../models/path.models';
 
-const BLOCK_PATH = "http://localhost:8080/block/";
+
 @Injectable({
   providedIn: 'root'
 })

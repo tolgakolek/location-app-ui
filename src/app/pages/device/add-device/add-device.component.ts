@@ -49,7 +49,7 @@ export class AddDeviceComponent implements OnInit {
     this.submitControl = true;
     if (this.formValidation.status == "VALID") {
       this.device = {
-        name: this.formValidation.value.buildName,
+        name: this.formValidation.value.deviceName,
         technology: this.formValidation.value.deviceTechnology,
         properties:this.formValidation.value.deviceDescription,
         active: this.checkboxValue,

@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserTitle } from '../models/user_title.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
-
-const USERTITLE_PATH = "http://localhost:8080//usertitle/";
+import { USERTITLE_PATH } from '../models/path.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserTitleService {

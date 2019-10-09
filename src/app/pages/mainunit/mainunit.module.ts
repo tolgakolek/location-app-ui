@@ -14,10 +14,11 @@ import { MainUnitRoutingModule } from './mainunit-routing';
 import { AddMainUnitComponent } from './add-main-unit/add-main-unit.component';
 import { UpdateMainUnitComponent } from './update-main-unit/update-main-unit.component';
 import { ListMainUnitComponent } from './list-main-unit/list-main-unit.component';
+import { MainUnitSortableDirective } from '../../core/helpers/table-sortable/main-unit-advanced-sortable.directive';
 
 
 @NgModule({
-  declarations: [AddMainUnitComponent, UpdateMainUnitComponent, ListMainUnitComponent],
+  declarations: [AddMainUnitComponent, UpdateMainUnitComponent, ListMainUnitComponent,MainUnitSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

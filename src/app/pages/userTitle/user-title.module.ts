@@ -13,10 +13,11 @@ import { UserTitleRoutingModule } from './user-title-routing';
 import { AddUserTitleComponent } from './add-user-title/add-user-title.component';
 import { UpdateUserTitleComponent } from './update-user-title/update-user-title.component';
 import { ListUserTitleComponent } from './list-user-title/list-user-title.component';
+import { UserTitleAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/user-title-advanced-sortable.directive';
 
 
 @NgModule({
-  declarations: [AddUserTitleComponent, UpdateUserTitleComponent, ListUserTitleComponent],
+  declarations: [AddUserTitleComponent, UpdateUserTitleComponent, ListUserTitleComponent , UserTitleAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

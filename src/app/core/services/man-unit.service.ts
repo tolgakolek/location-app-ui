@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MainUnits } from '../models/main_units.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { MAINUNIT_PATH } from '../models/path.models';
 
-const MAINUNIT_PATH = "http://localhost:8080/mainunit/";
+
 
 @Injectable({ providedIn: 'root' })
 export class MainUnitService {

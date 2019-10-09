@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Campus } from '../models/campus.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
-
-const CAMPUS_PATH = "http://localhost:8080/campus/";
+import { CAMPUS_PATH } from '../models/path.models';
 
 @Injectable({ providedIn: 'root' })
 export class CampusService {

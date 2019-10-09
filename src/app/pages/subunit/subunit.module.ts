@@ -14,10 +14,11 @@ import { SubUnitRoutingModule } from './subunit-routing';
 import { AddSubUnitComponent } from './add-sub-unit/add-sub-unit.component';
 import { UpdateSubUnitComponent } from './update-sub-unit/update-sub-unit.component';
 import { ListSubUnitComponent } from './list-sub-unit/list-sub-unit.component';
+import { SubUnitAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/sub-unit-advanced-sortable.directive';
 
 
 @NgModule({
-  declarations: [AddSubUnitComponent, UpdateSubUnitComponent, ListSubUnitComponent],
+  declarations: [AddSubUnitComponent, UpdateSubUnitComponent, ListSubUnitComponent, SubUnitAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

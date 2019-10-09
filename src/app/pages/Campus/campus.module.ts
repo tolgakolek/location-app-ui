@@ -9,9 +9,10 @@ import { AddCampusRoutingModule } from './campus-routing';
 
 import { AddCampusComponent } from './add-campus/addCampus.component';
 import { ListCampusComponent } from './list-campus/list-campus.component';
+import { CampusAdvancedSortableDirective } from '../../core/helpers/table-sortable/campus-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddCampusComponent, ListCampusComponent],
+  declarations: [AddCampusComponent, ListCampusComponent,CampusAdvancedSortableDirective],
   imports: [
     CommonModule,
     NgbAlertModule,

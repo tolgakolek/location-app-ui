@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserContactTypes } from '../models/user_contact_type.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { USERCONTACTTYPE_PATH } from '../models/path.models';
 
-const USERCONTACTTYPE_PATH = "http://localhost:8080//usercontacttype/";
 
 @Injectable({ providedIn: 'root' })
 export class UserContactTypeService {

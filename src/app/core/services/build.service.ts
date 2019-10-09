@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Build } from '../models/build.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
-const BUILD_PATH = "http://localhost:8080/build/";
+import { BUILD_PATH } from '../models/path.models';
+
 @Injectable({ providedIn: 'root' })
 export class BuildService {
   build: any;

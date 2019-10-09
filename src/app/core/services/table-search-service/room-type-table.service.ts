@@ -4,14 +4,10 @@ import { DecimalPipe } from '@angular/common';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 
-import { Table, SearchResult } from '../models/table.model';
 
-import { tableData } from '../../pages/campus/list-campus/data';
-
-
-import { SortDirection } from '../../pages/campus/list-campus/advanced-sortable.directive';
-import { Campus } from '../models/campus.models';
-import { CampusService } from './campus.service';
+import { SortDirection } from '../../helpers/table-sortable/room-type-advanced-sortable.directive';
+import { TableListService } from '../tableList.service';
+import { ROOMTYPE_PATH } from '../../models/path.models';
 
 interface State {
     page: number;
@@ -34,7 +30,7 @@ function compare(v1, v2) {
  * @param column Fetch the column
  * @param direction Sort direction Ascending or Descending
  */
-function sort(tables: Table[], column: string, direction: string): Table[] {
+function sort(tables: any[], column: string, direction: string): any[] {
     if (direction === '') {
         return tables;
     } else {
@@ -50,12 +46,12 @@ function sort(tables: Table[], column: string, direction: string): Table[] {
  * @param tables Table field value fetch
  * @param term Search the value
  */
-function matches(tables: Table, term: string, pipe: PipeTransform) {
+function matches(tables: any, term: string, pipe: PipeTransform) {
     /*pipe.transform(tables.active).includes(term);  number include
     ((tables.active == true) ? 'Aktif' : 'Pasif').toUpperCase().includes(term) boolen*/
     const active=(tables.active == true) ? 'Aktif' : 'Pasif';
-    return tables.name.toLowerCase().includes(term)
-        || active.toLowerCase().includes(term);
+    return tables.name.toLowerCase().includes(term.toLowerCase()) 
+        || active.toLowerCase().includes(term.toLowerCase()); 
 }
 
 @Injectable({
@@ -63,15 +59,15 @@ function matches(tables: Table, term: string, pipe: PipeTransform) {
 })
 
 export class TableService {
-    campus:Campus[]=[];
-    
-    
+    content:any[]=[];
+    Table:any[];
+    searchResult:boolean;
     // tslint:disable-next-line: variable-name
     private _loading$ = new BehaviorSubject<boolean>(true);
     // tslint:disable-next-line: variable-name
     private _search$ = new Subject<void>();
     // tslint:disable-next-line: variable-name
-    private _tables$ = new BehaviorSubject<Table[]>([]);
+    private _tables$ = new BehaviorSubject<any[]>([]);
     // tslint:disable-next-line: variable-name
     private _total$ = new BehaviorSubject<number>(0);
 
@@ -87,7 +83,7 @@ export class TableService {
         totalRecords: 0
     };
 
-    constructor(private pipe: DecimalPipe,private campusService:CampusService) {
+    constructor(private pipe: DecimalPipe,private tableListService:TableListService) {
         this._search$.pipe(
             tap(() => this._loading$.next(true)),
             debounceTime(200),
@@ -98,15 +94,15 @@ export class TableService {
             this._tables$.next(result.tables);
             this._total$.next(result.total);
         });
-        this.campusService.getAll().subscribe(data => {
-            this.campus = data;
-          });
         this._search$.next();
+        this.tableListService.getAll(ROOMTYPE_PATH).subscribe(data => {
+            this.content = data;
+          });
     }
-
     /**
      * Returns the value
      */
+
     get tables$() { return this._tables$.asObservable(); }
     get total$() { return this._total$.asObservable(); }
     get loading$() { return this._loading$.asObservable(); }
@@ -144,13 +140,12 @@ export class TableService {
     /**
      * Search Method
      */
-    private _search(): Observable<SearchResult> {
+    private _search(): Observable<any> {
         const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
         // 1. sort
-        let tables = sort(this.campus, sortColumn, sortDirection);
-
+        let tables = sort(this.content, sortColumn, sortDirection);
         // 2. filter
-        tables = tables.filter(table => matches(table, searchTerm, this.pipe));
+        tables = tables.filter(table => matches(table,searchTerm,this.pipe));
         const total = tables.length;
 
         // 3. paginate
@@ -160,7 +155,7 @@ export class TableService {
         if (this.endIndex > this.totalRecords) {
             this.endIndex = this.totalRecords;
         }
-        tables = tables.slice(this._state.startIndex - 1, this._state.endIndex );
+        tables = tables.slice(this._state.startIndex -1, this._state.endIndex );
 
         return of(
             { tables, total }

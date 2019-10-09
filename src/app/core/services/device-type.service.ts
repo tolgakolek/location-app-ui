@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DeviceTypes } from '../models/device_types.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { DEVİCETYPE_PATH } from '../models/path.models';
 
-const DEVİCETYPE_PATH = "http://localhost:8080/devicetype/";
+
 
 @Injectable({ providedIn: 'root' })
 export class DeviceTypeService {

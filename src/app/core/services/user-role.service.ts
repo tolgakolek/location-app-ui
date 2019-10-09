@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserRole } from '../models/user_role.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
+import { USERROLE_PATH } from '../models/path.models';
 
-const USERROLE_PATH = "http://localhost:8080//userrole/";
+
 
 @Injectable({ providedIn: 'root' })
 export class UserRoleService {

@@ -38,7 +38,6 @@ export class AddDeviceTypeComponent implements OnInit {
         name: this.formValidation.value.deviceTypeName,
         active :this.checkboxValue
       };
-      console.log(this.deviceType);
       this.deviceTypeService.save(this.deviceType).subscribe(res => {
         if(res.isSuccess){this.success = true;
           setTimeout(() => this.success = false, 2000);

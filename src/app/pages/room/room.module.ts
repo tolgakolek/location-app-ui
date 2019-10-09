@@ -13,9 +13,10 @@ import { RoomRoutingModule } from './room-routing';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { UpdateRoomComponent } from './update-room/update-room.component';
 import { ListRoomComponent } from './list-room/list-room.component';
+import { RoomAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/room-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddRoomComponent, UpdateRoomComponent, ListRoomComponent],
+  declarations: [AddRoomComponent, UpdateRoomComponent, ListRoomComponent, RoomAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

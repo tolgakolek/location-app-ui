@@ -3,12 +3,10 @@ import { DecimalPipe } from '@angular/common';
 
 import { Observable } from 'rxjs';
 
-import { Table } from '../../../core/models/table.model';
 
-import { tableData } from './data';
-
-import { TableService } from '../../../core/services/table.service';
-import { AdvancedSortableDirective, SortEvent } from './advanced-sortable.directive';
+import { TableService } from '../../../core/services/table-search-service/campus-table.service';
+import { CampusAdvancedSortableDirective, CampusSortEvent } from '../../../core/helpers/table-sortable/campus-advanced-sortable.directive';
+import { Campus } from 'src/app/core/models/campus.models';
 
 @Component({
   selector: 'app-list-campus',
@@ -23,14 +21,10 @@ import { AdvancedSortableDirective, SortEvent } from './advanced-sortable.direct
 export class ListCampusComponent implements OnInit {
   // bread crum data
   breadCrumbItems: Array<{}>;
-
-  // Table data
-  tableData: Table[];
-
-  tables$: Observable<Table[]>;
+  tables$: Observable<Campus[]>;
   total$: Observable<number>;
 
-  @ViewChildren(AdvancedSortableDirective) headers: QueryList<AdvancedSortableDirective>;
+  @ViewChildren(CampusAdvancedSortableDirective) headers: QueryList<CampusAdvancedSortableDirective>;
 
   constructor(public service: TableService) {
     this.tables$ = service.tables$;
@@ -40,26 +34,14 @@ export class ListCampusComponent implements OnInit {
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
     this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Kampüs Listele', path: '/', active: true }];
-
-    /**
-     * fetch data
-     */
-    this._fetchData();
   }
 
-  /**
-   * fetches the table value
-   */
-  _fetchData() {
-    this.tableData = tableData;
-  }
-
-  /**
+   /**
    * Sort table data
    * @param param0 sort the column
    *
    */
-  onSort({ column, direction }: SortEvent) {
+  onSort({ column, direction }: CampusSortEvent) {
     // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

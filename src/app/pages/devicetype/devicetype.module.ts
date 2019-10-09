@@ -14,9 +14,10 @@ import { DeviceTypeRoutingModule } from './devicetype-routing';
 import { AddDeviceTypeComponent } from './add-device-type/add-device-type.component'
 import { UpdateDeviceTypeComponent } from './update-device-type/update-device-type.component';
 import { ListDeviceTypeComponent } from './list-device-type/list-device-type.component';
+import { DeviceTypeAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/device-type-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddDeviceTypeComponent, UpdateDeviceTypeComponent, ListDeviceTypeComponent],
+  declarations: [AddDeviceTypeComponent, UpdateDeviceTypeComponent, ListDeviceTypeComponent, DeviceTypeAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +32,7 @@ import { ListDeviceTypeComponent } from './list-device-type/list-device-type.com
     ChartsModule,
     NgbCollapseModule,
     UIModule,
-    DeviceTypeRoutingModule
+    DeviceTypeRoutingModule    
   ]
 })
 export class DeviceTypeModule { }

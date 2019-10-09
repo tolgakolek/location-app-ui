@@ -15,9 +15,10 @@ import { BlockRoutingModule } from './block-routing';
 import { AddBlockComponent } from './add-block/add-block.component';
 import { UpdateBlockComponent } from './update-block/update-block.component';
 import { ListBlockComponent } from './list-block/list-block.component';
+import { BlockAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/block-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddBlockComponent, UpdateBlockComponent, ListBlockComponent],
+  declarations: [AddBlockComponent, UpdateBlockComponent, ListBlockComponent, BlockAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

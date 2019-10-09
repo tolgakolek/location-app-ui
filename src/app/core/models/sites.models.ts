@@ -6,3 +6,7 @@ export class Sites extends BaseModel{
     description:string;
     gps:string;
 }
+export interface CampusSearchResult {
+    tables: Sites[];
+    total: number;
+}

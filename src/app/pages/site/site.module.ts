@@ -13,10 +13,11 @@ import { SiteRoutingModule } from './site-routing';
 import { AddSiteComponent } from './add-site/add-site.component';
 import { UpdateSiteComponent } from './update-site/update-site.component';
 import { ListSiteComponent } from './list-site/list-site.component';
+import { SiteAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/site-advanced-sortable.directive';
 
 
 @NgModule({
-  declarations: [AddSiteComponent, UpdateSiteComponent, ListSiteComponent],
+  declarations: [AddSiteComponent, UpdateSiteComponent, ListSiteComponent,SiteAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

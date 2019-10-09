@@ -14,11 +14,12 @@ import { FloorRoutingModule } from './floor-routing';
 import { AddFloorComponent } from './add-floor/add-floor.component';
 import { UpdateFloorComponent } from './update-floor/update-floor.component';
 import { ListFloorComponent } from './list-floor/list-floor.component';
+import { FloorAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/floor-advanced-sortable.directive';
 
 
 
 @NgModule({
-  declarations: [AddFloorComponent, UpdateFloorComponent, ListFloorComponent],
+  declarations: [AddFloorComponent, UpdateFloorComponent, ListFloorComponent, FloorAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,

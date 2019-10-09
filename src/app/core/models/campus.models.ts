@@ -5,3 +5,8 @@ export class Campus extends BaseModel{
     name: string;
     campusSites?: Array<any>;
 }
+
+export interface CampusSearchResult {
+    tables: Campus[];
+    total: number;
+}

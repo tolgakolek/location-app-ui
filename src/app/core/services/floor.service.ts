@@ -3,9 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Floors } from '../models/floors.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
-
-
-const FLOOR_PATH = "http://localhost:8080/floor/";
+import { FLOOR_PATH } from '../models/path.models';
 
 @Injectable({
   providedIn: 'root'

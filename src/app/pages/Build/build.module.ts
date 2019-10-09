@@ -10,12 +10,14 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ChartsModule } from 'ng2-charts';
 
 import { UIModule } from '../../shared/ui/ui.module';
-import { AddCampusRoutingModule } from './build-routing';
+import { BuildRoutingModule } from './build-routing';
 
 import { AddBuildComponent } from './add-build/addBuild.component';
+import { ListBuildComponent } from './list-build/list-build.component';
+import { BuildAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/build-advanced-sortable.directive';
 
 @NgModule({
-  declarations: [AddBuildComponent],
+  declarations: [AddBuildComponent, ListBuildComponent, BuildAdvancedSortableDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,7 +32,7 @@ import { AddBuildComponent } from './add-build/addBuild.component';
     UIModule,
     NgbAlertModule,
     NgbModule,
-    AddCampusRoutingModule
+    BuildRoutingModule
   ]
 })
 export class AddBuildModule { }

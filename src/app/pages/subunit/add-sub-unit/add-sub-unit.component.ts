@@ -52,7 +52,6 @@ export class AddSubUnitComponent implements OnInit {
         name: this.formValidation.value.mainUnitName,
         active:this.checkboxValue
       };
-      console.log(this.subUnit);
       this.subUnitService.save(this.subUnit,this.mainUnitId).subscribe(res => {
         if (res.isSuccess) {
         this.success = true;
