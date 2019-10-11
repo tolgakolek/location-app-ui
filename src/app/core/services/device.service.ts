@@ -27,8 +27,22 @@ export class DeviceService {
     return this.http.get<Devices[]>(DEVİCE_PATH + "list/");
   }
 
-  save(device: Devices,deviceTypeId:number): Observable<any> {
-    return this.http.post(DEVİCE_PATH+deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
+  getById(id): Observable<Devices> {
+    return this.http.get<Devices>(DEVİCE_PATH + "{id}?id="+ id);
+  }
+  update(device: Devices, deviceTypeId: number): Observable<any> {
+    return this.http.post(DEVİCE_PATH + deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(device: Devices, deviceTypeId: number): Observable<any> {
+    return this.http.post(DEVİCE_PATH + deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

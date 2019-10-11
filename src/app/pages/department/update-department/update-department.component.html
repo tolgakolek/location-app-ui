@@ -1,53 +1,45 @@
 <div class="container-fluid">
-  <app-page-title title="Yeni Departman" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Departman Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <div class="row">
     <div class="col-12">
       <div class="card-box">
-        <h4 class="header-title">Yeni Departman Ekle</h4>
+        <h4 class="header-title">Departman Düzenle</h4>
         <p class="sub-header">
-          Yeni Departman eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+          Departman düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
-          <div _ngcontent-pnh-c6="" class="form-group mb-3">
-            <label>Lütfen Ana Birim Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
-            </select>
-          </div>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
           <div _ngcontent-pnh-c6="" class="form-group mb-3">
             <label>Lütfen Alt Birim Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setSubUnitId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="subUnitId">
+              <option _ngcontent-pnh-c6="" [ngValue]="0">Alt Birim Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let subUnit of subUnits" [selected]="subUnit.id==subUnitId"
+                [ngValue]="subUnit.id">
+                {{ subUnit.name }}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Departman Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Departman adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Departman adını giriniz.</span>
+            <input type="text" name="nick" formControlName="departmentName" [value]="department?.name" placeholder="Departman adı giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.departmentName.errors}">
+            <div *ngIf="submitControl && basic.departmentName.errors" class="invalid-feedback">
+              <span *ngIf="basic.departmentName.errors.required">Lütfen Departman adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
             <label>Açıklama <span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Departman adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Departman adını giriniz.</span>
+            <input type="text" name="nick" formControlName="departmentProperties" [value]="department?.properties" placeholder="Açıklama giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.departmentProperties.errors}">
+            <div *ngIf="submitControl && basic.departmentProperties.errors" class="invalid-feedback">
+              <span *ngIf="basic.departmentProperties.errors.required">Lütfen açıklama giriniz.</span>
             </div>
           </div>
           <div class="form-group">
             <label>Diğer <span class="text-danger">*</span></label>
-            <input type="text" name="nick" placeholder="Departman adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Departman adını giriniz.</span>
+            <input type="text" name="nick" formControlName="departmentOthers" [value]="department?.other" placeholder="Diğer giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.departmentOthers.errors}">
+            <div *ngIf="submitControl && basic.departmentOthers.errors" class="invalid-feedback">
+              <span *ngIf="basic.departmentOthers.errors.required">Lütfen diğer özellikleri giriniz.</span>
             </div>
           </div>
           <div class="form-group">
@@ -55,8 +47,8 @@
               <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
                 [ngModelOptions]="{standalone: true}" type="checkbox">
               <label for="checkbox6a">
-                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Departman Aktif</span>
-                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Departman Pasif</span>
+                <span *ngIf="checkboxValue" title="Departman kullanımdadır.">Departman Aktif</span>
+                <span *ngIf="!checkboxValue" title="Departman kullanımda değildir.">Departman Pasif</span>
               </label>
             </div>
           </div>

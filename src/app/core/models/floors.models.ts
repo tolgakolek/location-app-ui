@@ -1,10 +1,12 @@
 import { BaseModel } from './base.models';
+import { Block } from './block.models';
+import { Build } from './build.models';
 
 export class Floors extends BaseModel{
-    floor_id?:number;
+    id?:number;
     name:string;
     map:string;
     other:string;
-    block_id?:number;
-    build_id?:number;
+    block?:Block;
+    build?:Build;
 }

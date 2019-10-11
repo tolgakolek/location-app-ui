@@ -23,8 +23,8 @@ export class AddFloorComponent implements OnInit {
   floor: Floors;
   blocks: Block[] = [];
   builds: Build[] = [];
-  buildId: number;
-  blockId: number;
+  buildId= 0;
+  blockId= 0;
   checkboxValue = false;
   success = false;
 
@@ -65,7 +65,7 @@ export class AddFloorComponent implements OnInit {
         name: this.formValidation.value.floorName,
         map: this.formValidation.value.floorMap,
         other: this.formValidation.value.floorOther,
-        active: this.formValidation.value.active
+        active: this.checkboxValue
       };
       if (this.blockId != 0) {
         this.buildId=0;

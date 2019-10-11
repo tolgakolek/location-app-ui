@@ -10,7 +10,7 @@ const routes: Routes = [
         path: 'add', component: AddSubUnitComponent
     },
     {
-        path: 'update', component: UpdateSubUnitComponent
+        path: 'update/:id', component: UpdateSubUnitComponent
     },
     {
         path: 'list', component: ListSubUnitComponent

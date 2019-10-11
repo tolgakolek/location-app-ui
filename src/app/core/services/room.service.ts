@@ -24,8 +24,22 @@ export class RoomService {
     return this.http.get<Rooms[]>(ROOM_PATH + "list/");
   }
 
-  save(room: Rooms, floorId:number, typeId:number): Observable<any> {
-    return this.http.post(ROOM_PATH+"type/"+typeId.toString()+"/floor/"+floorId.toString(), JSON.stringify(room), this.requestOptions).pipe(map(
+  getById(id): Observable<Rooms> {
+    return this.http.get<Rooms>(ROOM_PATH + id);
+  }
+  update(room: Rooms, floorId: number, typeId: number): Observable<any> {
+    return this.http.post(ROOM_PATH + "type/" + typeId.toString() + "/floor/" + floorId.toString(), JSON.stringify(room), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(room: Rooms, floorId: number, typeId: number): Observable<any> {
+    return this.http.post(ROOM_PATH + "type/" + typeId.toString() + "/floor/" + floorId.toString(), JSON.stringify(room), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

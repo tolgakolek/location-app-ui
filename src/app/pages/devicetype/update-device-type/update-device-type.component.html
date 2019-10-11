@@ -1,19 +1,19 @@
 <div class="container-fluid">
-  <app-page-title title="Yeni Cihaz" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Yeni Cihaz Türü" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <div class="row">
     <div class="col-12">
       <div class="card-box">
-        <h4 class="header-title">Yeni Cihaz Türü Ekle</h4>
+        <h4 class="header-title">Cihaz Türü Düzenle</h4>
         <p class="sub-header">
-          Yeni Cihaz Türü eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+          Cihaz Türü düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
           <div class="form-group">
             <label>Tür Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Cihaz adı giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
+            <input type="text" name="nick" [value]="deviceType?.name" formControlName="deviceTypeName" placeholder="Cihaz türünün adı giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceTypeName.errors}">
+            <div *ngIf="submitControl && basic.deviceTypeName.errors" class="invalid-feedback">
+              <span *ngIf="basic.deviceTypeName.errors.required">Lütfen cihaz tür adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
@@ -21,16 +21,16 @@
                 <input id="checkbox6a" name="checkboxBlue"  [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
                  type="checkbox">
                 <label for="checkbox6a">
-                        <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Tür Aktif</span>
-                        <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Tür Pasif</span>
+                        <span *ngIf="checkboxValue" title="Cihaz Türü kullanımdadır.">Cihaz Türü Aktif</span>
+                        <span *ngIf="!checkboxValue" title="Cihaz Türü kullanımda değildir.">Cihaz Türü Pasif</span>
                 </label>
             </div>
         </div>
           <div class="form-group text-center" *ngIf="success">
             <ngb-alert [dismissible]="false" (close)="success=false"
               class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
-              Yeni <strong>Tür</strong>
-              başarılı bir şekilde eklendi.</ngb-alert>
+              <strong>Cihaz Türü</strong>
+              başarılı bir şekilde güncellendi.</ngb-alert>
           </div>
           <div class="form-group text-right mb-0">
             <button class="btn btn-info waves-effect waves-light mr-1" type="submit">

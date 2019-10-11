@@ -10,7 +10,7 @@ const routes: Routes = [
         path: 'add', component: AddSiteComponent
     },
     {
-        path: 'update', component: UpdateSiteComponent
+        path: 'update/:id', component: UpdateSiteComponent
     },
     {
         path: 'list', component: ListSiteComponent

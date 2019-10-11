@@ -29,7 +29,7 @@ export class AddSubUnitComponent implements OnInit {
     this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Alt Birim', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
-      mainUnitName: ['', [Validators.required]]
+      subUnitName: ['', [Validators.required]]
     });
     this.mainUnitService.getAll().subscribe(data => {
       this.mainUnits = data;
@@ -49,7 +49,7 @@ export class AddSubUnitComponent implements OnInit {
     this.submitControl = true;
     if (this.formValidation.status == "VALID") {
       this.subUnit = {
-        name: this.formValidation.value.mainUnitName,
+        name: this.formValidation.value.subUnitName,
         active:this.checkboxValue
       };
       this.subUnitService.save(this.subUnit,this.mainUnitId).subscribe(res => {

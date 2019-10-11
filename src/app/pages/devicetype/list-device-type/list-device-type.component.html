@@ -38,6 +38,7 @@
                 <tr>
                   <th sortable="name" (sort)="onSort($event)">Name</th>
                   <th sortable="active" (sort)="onSort($event)">Durum</th>
+                  <th>Düzenle</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,7 +47,13 @@
                     <ngb-highlight [result]="table?.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm">
+                    </ngb-highlight>
+                  </td>
+                  <td>
+                    <button type="button" class="tabledit-edit-button btn btn-success"
+                      routerLink='/devicetype/update/{{table.id}}' style="float: none;"><span
+                        class="mdi mdi-pencil"></span></button>
                   </td>
                 </tr>
               </tbody>

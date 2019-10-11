@@ -21,7 +21,21 @@ export class UserTitleService {
   getAll(): Observable<UserTitle[]> {
     return this.http.get<UserTitle[]>(USERTITLE_PATH + "list/");
   }
+  getById(id): Observable<UserTitle> {
+    return this.http.get<UserTitle>(USERTITLE_PATH + id);
+  }
 
+  update(userTitle: UserTitle): Observable<any> {
+    return this.http.post(USERTITLE_PATH, JSON.stringify(userTitle), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
   save(userTitle: UserTitle): Observable<any> {
     return this.http.post(USERTITLE_PATH, JSON.stringify(userTitle), this.requestOptions).pipe(map(
       res => {

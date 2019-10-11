@@ -23,9 +23,22 @@ export class FloorService {
   getAll(): Observable<Floors[]> {
     return this.http.get<Floors[]>(FLOOR_PATH + "list/");
   }
-
-  save(floor: Floors, blookId:number, buildId:number): Observable<any> {
-    return this.http.post(FLOOR_PATH+"block/"+blookId.toString()+"/build/"+buildId.toString(), JSON.stringify(floor), this.requestOptions).pipe(map(
+  getById(id): Observable<Floors> {
+    return this.http.get<Floors>(FLOOR_PATH +"{/"+ id);
+  }
+  update(floor: Floors, blookId: number, buildId: number): Observable<any> {
+    return this.http.post(FLOOR_PATH + "block/" + blookId.toString() + "/build/" + buildId.toString(), JSON.stringify(floor), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(floor: Floors, blookId: number, buildId: number): Observable<any> {
+    return this.http.post(FLOOR_PATH + "block/" + blookId.toString() + "/build/" + buildId.toString(), JSON.stringify(floor), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

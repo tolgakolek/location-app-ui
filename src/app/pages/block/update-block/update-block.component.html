@@ -1,3 +1,66 @@
-<p>
-  update-block works!
-</p>
+<div class="container-fluid">
+  <app-page-title title="Blok Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+      <div class="col-12  justify-content-center">
+          <div class="card-box">
+              <h4 class="header-title">Block Düzenle</h4>
+              <p class="sub-header">
+                  Blok düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+              </p>
+              <form (ngSubmit)="submit()" [formGroup]="formValidation">
+                  <div _ngcontent-pnh-c6="" class="form-group mb-3">
+                      <label>Lütfen Bir Bina Seçin</label>
+                      <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
+                          (ngModelChange)="setBuildId($event)" [ngModelOptions]="{standalone: true}"
+                          [ngModel]="buildId">
+                          <option _ngcontent-pnh-c6="" selected="selected" value="0">Bina Seçiniz</option>
+                          <option _ngcontent-pnh-c6="" *ngFor="let build of builds" [ngValue]="build.id">
+                              {{ build.name }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Blok Adı<span class="text-danger">*</span></label>
+                      <input type="text" name="name" [value]="block?.name" formControlName="blockName" placeholder="Blok Adını Girin"
+                          class="form-control" [ngClass]="{'is-invalid': submitControl && basic.blockName.errors}">
+                      <div *ngIf="submitControl && basic.blockName.errors" class="invalid-feedback">
+                          <span *ngIf="basic.blockName.errors.required">Lütfen bina adını giriniz.</span>
+                          <span *ngIf="basic.blockName.errors.pattern">Özel karakterleri kullanmayınız.</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label>Gps Bilgisi<span class="text-danger">*</span></label>
+                      <input type="text" name="gps" [value]="block?.gps" formControlName="blockGps" placeholder="Gps Girin"
+                          class="form-control" [ngClass]="{'is-invalid': submitControl && basic.blockGps.errors}">
+                      <div *ngIf="submitControl && basic.blockGps.errors" class="invalid-feedback">
+                          <span *ngIf="basic.blockGps.errors.required">Lütfen gps bilgilerini giriniz.</span>
+                          <span *ngIf="basic.blockGps.errors.pattern">Özel karakterleri kullanmayınız.</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="checkbox checkbox-blue p-1">
+                          <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
+                              [ngModelOptions]="{standalone: true}" type="checkbox">
+                          <label for="checkbox6a">
+                              <span *ngIf="checkboxValue" title="Bina kullanımdadır.">Bina Aktif</span>
+                              <span *ngIf="!checkboxValue" title="Bina kullanımda değildir.">Bina Pasif</span>
+                          </label>
+                      </div>
+                  </div>
+                  <div class="form-group text-center" *ngIf="success">
+                      <ngb-alert [dismissible]="false" (close)="success=false"
+                          class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+                          Yeni <strong>Bina</strong>
+                          başarılı bir şekilde eklendi.</ngb-alert>
+                  </div>
+                  <div class="form-group text-right mb-0">
+                      <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                          Kaydet
+                      </button>
+                      <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                          Vazgeç
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>

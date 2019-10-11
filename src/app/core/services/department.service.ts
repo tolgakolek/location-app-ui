@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Build } from '../models/build.models';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 import { Department } from '../models/department.models';
@@ -21,12 +20,26 @@ export class DepartmentService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Build[]> {
-    return this.http.get<Build[]>(DEPARTMENT_PATH + "list/");
+  getAll(): Observable<Department[]> {
+    return this.http.get<Department[]>(DEPARTMENT_PATH + "list/");
   }
-
-  save(build: Department,subUnitId:number): Observable<any> {
-    return this.http.post(DEPARTMENT_PATH+subUnitId.toString(), JSON.stringify(build), this.requestOptions).pipe(map(
+  
+  getById(id): Observable<Department> {
+    return this.http.get<Department>(DEPARTMENT_PATH + id);
+  }
+  update(department: Department, subUnitId: number): Observable<any> {
+    return this.http.post(DEPARTMENT_PATH + subUnitId.toString(), JSON.stringify(department), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(department: Department, subUnitId: number): Observable<any> {
+    return this.http.post(DEPARTMENT_PATH + subUnitId.toString(), JSON.stringify(department), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

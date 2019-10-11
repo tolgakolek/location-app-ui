@@ -21,9 +21,24 @@ export class SubUnitService {
     getAll(): Observable<SubUnits[]> {
         return this.http.get<SubUnits[]>(SUBUNIT_PATH + "list/");
     }
+    getById(id): Observable<SubUnits> {
+        return this.http.get<SubUnits>(SUBUNIT_PATH + id);
+    }
 
-    save(subUnit: SubUnits,mainUnitId:number): Observable<any> {
-        return this.http.post(SUBUNIT_PATH+mainUnitId.toString(), JSON.stringify(subUnit), this.requestOptions).pipe(map(
+    update(subUnit: SubUnits, mainUnitId:number): Observable<any> {
+        return this.http.post(SUBUNIT_PATH + mainUnitId.toString(), JSON.stringify(subUnit), this.requestOptions).pipe(map(
+            res => {
+                if (res) {
+                    return res;
+                } else {
+                    return {};
+                }
+            }
+        ));
+    }
+    
+    save(subUnit: SubUnits, mainUnitId: number): Observable<any> {
+        return this.http.post(SUBUNIT_PATH + mainUnitId.toString(), JSON.stringify(subUnit), this.requestOptions).pipe(map(
             res => {
                 if (res) {
                     return res;

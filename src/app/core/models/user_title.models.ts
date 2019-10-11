@@ -1,7 +1,7 @@
 import { BaseModel } from './base.models';
 
-export class UserTitle extends BaseModel{
-    user_title_id?:number;
-    name:string;
-    
+export class UserTitle extends BaseModel {
+    id?: number;
+    name: string;
+
 }

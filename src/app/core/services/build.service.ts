@@ -23,9 +23,23 @@ export class BuildService {
   getAll(): Observable<Build[]> {
     return this.http.get<Build[]>(BUILD_PATH + "list/");
   }
+  getById(id): Observable<Build> {
+    return this.http.get<Build>(BUILD_PATH + id);
+  }
 
-  save(build: Build,campusId:number,siteId:number): Observable<any> {
-    return this.http.post(BUILD_PATH+"campus/"+campusId.toString()+"/site/"+siteId.toString(), JSON.stringify(build), this.requestOptions).pipe(map(
+  update(build: Build, campusId: number, siteId: number): Observable<any> {
+    return this.http.post(BUILD_PATH + "campus/" + campusId.toString() + "/site/" + siteId.toString(), JSON.stringify(build), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(build: Build, campusId: number, siteId: number): Observable<any> {
+    return this.http.post(BUILD_PATH + "campus/" + campusId.toString() + "/site/" + siteId.toString(), JSON.stringify(build), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

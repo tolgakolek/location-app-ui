@@ -13,7 +13,7 @@
             <input type="text" name="nick" formControlName="mainUnitName" placeholder="Ana Birim adı giriniz" class="form-control"
               [ngClass]="{'is-invalid': submitControl && basic.mainUnitName.errors}">
             <div *ngIf="submitControl && basic.mainUnitName.errors" class="invalid-feedback">
-              <span *ngIf="basic.mainUnitName.errors.required">Lütfen Birim adını giriniz.</span>
+              <span *ngIf="basic.mainUnitName.errors.required">Lütfen bir birim adı giriniz.</span>
             </div>
           </div>
           <div class="form-group">

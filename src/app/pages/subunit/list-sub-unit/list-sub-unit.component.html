@@ -38,15 +38,21 @@
                 <tr>
                   <th sortable="name" (sort)="onSort($event)">Name</th>
                   <th sortable="mainUnit" (sort)="onSort($event)">Ana Birim</th>
+                  <th>Düzenle</th>
                 </tr>
               </thead>
               <tbody>
                 <tr tr *ngFor="let table of tables$ | async">
                   <td>
-                    <ngb-highlight [result]="table.name" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table?.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.mainUnit.name" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table.mainUnit?.name" [term]="service.searchTerm"></ngb-highlight>
+                  </td>
+                  <td>
+                    <button type="button" class="tabledit-edit-button btn btn-success"
+                      routerLink='/subunit/update/{{table.id}}' style="float: none;"><span
+                        class="mdi mdi-pencil"></span></button>
                   </td>
                 </tr>
               </tbody>

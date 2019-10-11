@@ -23,6 +23,21 @@ export class UserContactTypeService {
   getAll(): Observable<UserContactTypes[]> {
     return this.http.get<UserContactTypes[]>(USERCONTACTTYPE_PATH + "list/");
   }
+  getById(id): Observable<UserContactTypes> {
+    return this.http.get<UserContactTypes>(USERCONTACTTYPE_PATH + id);
+  }
+
+  update(userContactType: UserContactTypes): Observable<any> {
+    return this.http.post(USERCONTACTTYPE_PATH, JSON.stringify(userContactType), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
 
   save(userContactType: UserContactTypes): Observable<any> {
     return this.http.post(USERCONTACTTYPE_PATH, JSON.stringify(userContactType), this.requestOptions).pipe(map(

@@ -1,9 +1,11 @@
 import { BaseModel } from './base.models';
+import { RoomType } from './room_types.models';
+import { Floors } from './floors.models';
 
 export class Rooms extends BaseModel{
-    room_id?:number;
+    id?:number;
     name:string;
     map:string;
-    floor_id?:number;
-    room_type_id?:number;
+    floor?:Floors;
+    roomType?:RoomType;
 }

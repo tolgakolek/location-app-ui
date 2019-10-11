@@ -1,3 +1,55 @@
-<p>
-  update-user-role works!
-</p>
+<div class="container-fluid">
+  <app-page-title title="Kullanıcı Rolü Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+      <div class="col-12">
+          <div class="card-box">
+              <h4 class="header-title">Kullanıcı Rolü Düzenle</h4>
+              <p class="sub-header">
+                  Kullanıcı Rolü düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+              </p>
+              <form (ngSubmit)="submit()" [formGroup]="formValidation">
+                  <div class="form-group">
+                      <label>Kullanıcı Rolünün Adı<span class="text-danger">*</span></label>
+                      <input type="text" name="nick" [value]="userRole?.name" formControlName="userRoleName"
+                      placeholder="Kullanıcı Rolü Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleName.errors}">
+                      <div *ngIf="submitControl && basic.userRoleName.errors" class="invalid-feedback">
+                          <span *ngIf="basic.userRoleName.errors.required">Lütfen Kullanıcı Rolü giriniz.</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Özellik<span class="text-danger">*</span></label>
+                    <input type="text" name="nick" [value]="userRole?.description" formControlName="userRoleDescription"
+                    placeholder="Özellik Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userRoleDescription.errors}">
+                    <div *ngIf="submitControl && basic.userRoleDescription.errors" class="invalid-feedback">
+                        <span *ngIf="basic.userRoleDescription.errors.required">Lütfen Özellik giriniz.</span>
+                    </div>
+                </div>
+                  <div class="form-group">
+                      <div class="checkbox checkbox-blue p-1">
+                          <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
+                           type="checkbox"> 
+                          <label for="checkbox6a">
+                                  <span *ngIf="checkboxValue" title="Kullanıcı Rolü kullanımdadır.">Kullanıcı Rolü Aktif</span>
+                                  <span *ngIf="!checkboxValue" title="Kullanıcı Rolü kullanımda değildir.">Kullanıcı Rolü Pasif</span>
+                          </label>
+                      </div>
+                  </div>
+                  <div class="form-group text-center" *ngIf="success">
+                          <ngb-alert [dismissible]="false" (close)="success=false" class="alert alert-success bg-success text-black border-0" 
+                          type="success" data-auto-dismiss>
+                              <strong>Kullanıcı Rolü</strong>
+                              başarılı bir şekilde düzenlendi.</ngb-alert>
+                  </div>
+                  <div class="form-group text-right mb-0">
+                      <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+                          Kaydet
+                      </button>
+                      <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                         Temizle
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  

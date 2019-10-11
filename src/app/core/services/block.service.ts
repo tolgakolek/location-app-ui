@@ -25,9 +25,23 @@ export class BlockService {
   getAll(): Observable<Block[]> {
     return this.http.get<Block[]>(BLOCK_PATH + "list/");
   }
+  getById(id): Observable<Block> {
+    return this.http.get<Block>(BLOCK_PATH + id);
+  }
 
-  save(block: Block,buildId:number): Observable<any> {
-    return this.http.post(BLOCK_PATH+buildId.toString(), JSON.stringify(block), this.requestOptions).pipe(map(
+  update(block: Block, buildId: number): Observable<any> {
+    return this.http.post(BLOCK_PATH + buildId.toString(), JSON.stringify(block), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
+  save(block: Block, buildId: number): Observable<any> {
+    return this.http.post(BLOCK_PATH + buildId.toString(), JSON.stringify(block), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

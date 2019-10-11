@@ -18,7 +18,7 @@ export class AddBlockComponent implements OnInit {
   submitControl: boolean;
   block: Block;
   builds: Build[] = [];
-  buildId: number;
+  buildId=0;
   checkboxValue = false;
   success = false;
   constructor(public formBuilder: FormBuilder, private blockService: BlockService, private buildService: BuildService) { }
@@ -49,7 +49,7 @@ export class AddBlockComponent implements OnInit {
       this.block = {
         name: this.formValidation.value.blockName,
         gps: this.formValidation.value.blockGps,
-        active: this.formValidation.value.active
+        active: this.checkboxValue
       };
       this.blockService.save(this.block,this.buildId).subscribe(res => {
         if (res.isSuccess) {

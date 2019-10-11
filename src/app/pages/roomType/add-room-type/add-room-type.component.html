@@ -10,7 +10,7 @@
               <form (ngSubmit)="submit()" [formGroup]="formValidation">
                   <div class="form-group">
                       <label>Oda Türünün Adı<span class="text-danger">*</span></label>
-                      <input type="text" name="nick" formControlName="roomTypeName"
+                      <input type="text" name="nick" [value]="roomType?.name" formControlName="roomTypeName"
                       placeholder="Oda Türünün Adını Girin" class="form-control" [ngClass]="{'is-invalid': submitControl && basic.roomTypeName.errors}">
                       <div *ngIf="submitControl && basic.roomTypeName.errors" class="invalid-feedback">
                           <span *ngIf="basic.roomTypeName.errors.required">Lütfen oda türünün adını giriniz.</span>

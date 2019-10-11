@@ -23,9 +23,22 @@ export class SitesService {
     getAll(): Observable<Sites[]> {
         return this.http.get<Sites[]>(SITES_PATH + "list/");
     }
-
-    save(sites: Sites,campusId:number): Observable<any> {
-        return this.http.post(SITES_PATH+campusId.toString(), JSON.stringify(sites), this.requestOptions).pipe(map(
+    getById(id): Observable<Sites> {
+        return this.http.get<Sites>(SITES_PATH + id);
+    }
+    update(sites: Sites, campusId: number): Observable<any> {
+        return this.http.post(SITES_PATH + campusId.toString(), JSON.stringify(sites), this.requestOptions).pipe(map(
+            res => {
+                if (res) {
+                    return res;
+                } else {
+                    return {};
+                }
+            }
+        ));
+    }
+    save(sites: Sites, campusId: number): Observable<any> {
+        return this.http.post(SITES_PATH + campusId.toString(), JSON.stringify(sites), this.requestOptions).pipe(map(
             res => {
                 if (res) {
                     return res;

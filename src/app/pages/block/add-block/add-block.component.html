@@ -9,15 +9,14 @@
                 </p>
                 <form (ngSubmit)="submit()" [formGroup]="formValidation">
                     <div _ngcontent-pnh-c6="" class="form-group mb-3">
-                        <label>Lütfen Bir Bina Seçin</label>
+                        <label>Lütfen Bina Seçin</label>
                         <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
-                            (ngModelChange)="setBuildId($event)" [ngModelOptions]="{standalone: true}"
-                            [ngModel]="buildId">
-                            <option _ngcontent-pnh-c6="" selected="selected" value="0">Bina Seçiniz</option>
-                            <option _ngcontent-pnh-c6="" *ngFor="let build of builds" [ngValue]="build.id">
-                                {{ build.name }}</option>
+                          (ngModelChange)="setBuildId($event)" [ngModelOptions]="{standalone: true}" [ngModel]="buildId">
+                          <option _ngcontent-pnh-c6="" value="0">Bina Seçiniz</option>
+                          <option _ngcontent-pnh-c6="" *ngFor="let build of builds" [selected]="0" [ngValue]="build.id">
+                            {{ build.name }}</option>
                         </select>
-                    </div>
+                      </div>
                     <div class="form-group">
                         <label>Blok Adı<span class="text-danger">*</span></label>
                         <input type="text" name="name" formControlName="blockName" placeholder="Blok Adını Girin"

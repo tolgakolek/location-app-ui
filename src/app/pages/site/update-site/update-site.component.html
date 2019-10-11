@@ -1,3 +1,71 @@
-<p>
-  update-site works!
-</p>
+<div class="container-fluid">
+  <app-page-title title="Site Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card-box">
+        <h4 class="header-title">Site Düzenle</h4>
+        <p class="sub-header">
+          Site düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+        </p>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
+          <div _ngcontent-pnh-c6="" class="form-group mb-3">
+            <label>Lütfen Bir Kampüs Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setCampusId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="campusId">
+              <option _ngcontent-pnh-c6="">Kampüs Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let campus of campus" [selected]="campus.id==site?.campus?.id" [ngValue]="campus.id">
+                {{ campus.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Site İsmi<span class="text-danger">*</span></label>
+            <input type="text" name="nick" [value]="site?.name" formControlName="siteName" placeholder="Site ismi giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.siteName.errors}">
+            <div *ngIf="submitControl && basic.siteName.errors" class="invalid-feedback">
+              <span *ngIf="basic.siteName.errors.required">Lütfen site ismini giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Gps<span class="text-danger">*</span></label>
+            <input type="text" name="nick"  [value]="site?.gps" formControlName="siteGps" placeholder="Gps giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.siteGps.errors}">
+            <div *ngIf="submitControl && basic.siteGps.errors" class="invalid-feedback">
+              <span *ngIf="basic.siteGps.errors.required">Lütfen gps giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Özellik<span class="text-danger">*</span></label>
+            <input type="text" name="nick"  [value]="site?.description" formControlName="siteDescription" placeholder="Site Özellik giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.siteDescription.errors}">
+            <div *ngIf="submitControl && basic.siteDescription.errors" class="invalid-feedback">
+              <span *ngIf="basic.siteDescription.errors.required">Lütfen özellik giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox checkbox-blue p-1">
+              <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
+                [ngModelOptions]="{standalone: true}" type="checkbox">
+              <label for="checkbox6a">
+                <span *ngIf="checkboxValue" title="Bina kullanımdadır.">Site Aktif</span>
+                <span *ngIf="!checkboxValue" title="Bina kullanımda değildir.">Site Pasif</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group text-center" *ngIf="success">
+            <ngb-alert [dismissible]="false" (close)="success=false"
+              class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+              <strong>Site</strong>
+              başarılı bir şekilde düzenlendi.</ngb-alert>
+          </div>
+          <div class="form-group text-right mb-0">
+            <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+              Kaydet
+            </button>
+            <button type="reset" class="btn btn-secondary waves-effect waves-light">
+              Temizle
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AddBlockComponent } from './add-block/add-block.component';
 import { ListBlockComponent } from './list-block/list-block.component';
+import { UpdateBlockComponent } from './update-block/update-block.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,10 @@ const routes: Routes = [
     {
         path: 'list',
         component: ListBlockComponent
+    },
+    {
+        path: 'update/:id',
+        component: UpdateBlockComponent
     }
 ];
 

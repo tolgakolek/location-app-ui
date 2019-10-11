@@ -19,7 +19,7 @@ export class AddMainUnitComponent implements OnInit {
   success=false;
   constructor(public formBuilder: FormBuilder,private http:HttpClient, private mainunitService:MainUnitService) { }
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Ana Birim', path: '/', active: true }];
+    this.breadCrumbItems = [{ label: 'sAna Sayfa', path: '/' }, { label: 'Yeni Ana Birim', path: '/', active: true }];
 
     this.formValidation = this.formBuilder.group({
       mainUnitName: ['', [Validators.required]],

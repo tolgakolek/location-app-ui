@@ -10,7 +10,7 @@ const routes: Routes = [
         path: 'add', component: AddUserRoleComponent
     },
     {
-        path: 'update', component: UpdateUserRoleComponent
+        path: 'update/:id', component: UpdateUserRoleComponent
     },
     {
         path: 'list', component: ListUserRoleComponent

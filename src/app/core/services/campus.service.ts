@@ -11,6 +11,9 @@ export class CampusService {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'charset': 'utf-8',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     };
 
     requestOptions = {
@@ -22,9 +25,24 @@ export class CampusService {
     getAll(): Observable<Campus[]> {
         return this.http.get<Campus[]>(CAMPUS_PATH + "list/");
     }
+    getById(id): Observable<Campus> {
+        return this.http.get<Campus>(CAMPUS_PATH + id);
+    }
+
+    update(campus: Campus): Observable<any> {
+        return this.http.post(CAMPUS_PATH, JSON.stringify(campus), this.requestOptions).pipe(map(
+            res => {
+                if (res) {
+                    return res;
+                } else {
+                    return {};
+                }
+            }
+        ));
+    }
 
     save(campus: Campus): Observable<any> {
-        return this.http.post(CAMPUS_PATH, JSON.stringify(campus),this.requestOptions).pipe(map(
+        return this.http.post(CAMPUS_PATH, JSON.stringify(campus), this.requestOptions).pipe(map(
             res => {
                 if (res) {
                     return res;

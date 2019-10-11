@@ -24,7 +24,21 @@ export class UserRoleService {
   getAll(): Observable<UserRole[]> {
     return this.http.get<UserRole[]>(USERROLE_PATH + "list/");
   }
+  getById(id): Observable<UserRole> {
+    return this.http.get<UserRole>(USERROLE_PATH + id);
+  }
 
+  update(userTitle: UserRole): Observable<any> {
+    return this.http.post(USERROLE_PATH, JSON.stringify(userTitle), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
   save(campus: UserRole): Observable<any> {
     return this.http.post(USERROLE_PATH, JSON.stringify(campus), this.requestOptions).pipe(map(
       res => {

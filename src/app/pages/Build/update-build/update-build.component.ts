@@ -1,32 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Build } from '../../../core/models/build.models';
 import { Campus } from '../../../core/models/campus.models';
 import { CampusService } from '../../../core/services/campus.service'
 import { SitesService } from 'src/app/core/services/sites.service';
 import { BuildService } from 'src/app/core/services/build.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-add-build',
-  templateUrl: './addBuild.component.html',
-  styleUrls: ['./addBuild.component.scss'],
+  selector: 'app-update-build',
+  templateUrl: './update-build.component.html',
+  styleUrls: ['./update-build.component.scss'],
 })
 
 /**
  * Dashboard-1 component: handling the dashboard-1 with sidebar and content
  */
-export class AddBuildComponent implements OnInit {
+export class UpdateBuildComponent implements OnInit {
   breadCrumbItems: Array<{}>;
   formValidation: FormGroup;
   submitControl: boolean;
   build: Build;
+  buildId;
   campus: Campus[] = [];
   sites: any[] = [];
   checkboxValue = false;
   campusId = 0;
   siteId = 0;
   success = false;
-  constructor(public formBuilder: FormBuilder, private campusService: CampusService, private sitesService: SitesService, private buildService: BuildService) { }
+  constructor(public formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private campusService: CampusService, private sitesService: SitesService, private buildService: BuildService) { }
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Bina', path: '/', active: true }];
     this.formValidation = this.formBuilder.group({
@@ -35,6 +36,7 @@ export class AddBuildComponent implements OnInit {
       textareaAddress: ['', [Validators.required]],
       textareaProperties: ['', [Validators.required]]
     });
+    this.getBuildById();
     this.campusService.getAll().subscribe(data => {
       this.campus = data;
     });
@@ -64,7 +66,9 @@ export class AddBuildComponent implements OnInit {
         properties: this.formValidation.value.textareaProperties,
         gps: this.formValidation.value.buildGps,
         active: this.checkboxValue,
+        id: this.buildId
       };
+      console.log(this.build);
       if (this.siteId != 0) {
         this.build.site_id = this.siteId;
       }
@@ -73,11 +77,9 @@ export class AddBuildComponent implements OnInit {
       }
       this.buildService.save(this.build, this.campusId, this.siteId).subscribe(res => {
         if (res.isSuccess) {
-        this.success = true;
-          setTimeout(() => this.success = false, 2000);
-          setTimeout(() => this.checkboxValue = false, 2000);
-          setTimeout(() => this.formValidation.reset(), 2000);
-          setTimeout(() => this.submitControl = false, 2000);
+          this.success = true;
+          setTimeout(() => this.success = false, 500);
+          setTimeout(() => this.router.navigate(['/build/list']), 1000);
         }
         else if (!res.isSuccess) {
           console.log("Sunucu Tarafından Başarısız Oldu.");
@@ -88,6 +90,27 @@ export class AddBuildComponent implements OnInit {
       });
 
     }
+  }
+  getBuildById(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.buildService.getById(id)
+      .subscribe(build => {
+        this.build = build;
+        this.buildId = build.id;
+        this.checkboxValue = build.active;
+        try {
+          this.campusId = build.site.campus.id;
+        }
+        catch {
+          this.campusId = build.campus.id;
+        }
+        try {
+          this.siteId = build.site.id;
+        }
+        catch {
+          this.siteId = 0;
+        }
+      });
   }
 }
 

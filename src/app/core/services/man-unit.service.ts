@@ -24,6 +24,20 @@ export class MainUnitService {
     return this.http.get<MainUnits[]>(MAINUNIT_PATH + "list/");
   }
 
+  getById(id): Observable<MainUnits> {
+    return this.http.get<MainUnits>(MAINUNIT_PATH + id);
+  }
+  update(mainUnit: MainUnits): Observable<any> {
+    return this.http.post(MAINUNIT_PATH, JSON.stringify(mainUnit), this.requestOptions).pipe(map(
+      res => {
+        if (res) {
+          return res;
+        } else {
+          return {};
+        }
+      }
+    ));
+  }
   save(mainUnit: MainUnits): Observable<any> {
     return this.http.post(MAINUNIT_PATH, JSON.stringify(mainUnit), this.requestOptions).pipe(map(
       res => {

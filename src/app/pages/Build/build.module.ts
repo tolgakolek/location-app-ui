@@ -15,9 +15,10 @@ import { BuildRoutingModule } from './build-routing';
 import { AddBuildComponent } from './add-build/addBuild.component';
 import { ListBuildComponent } from './list-build/list-build.component';
 import { BuildAdvancedSortableDirective } from 'src/app/core/helpers/table-sortable/build-advanced-sortable.directive';
+import { UpdateBuildComponent } from './update-build/update-build.component';
 
 @NgModule({
-  declarations: [AddBuildComponent, ListBuildComponent, BuildAdvancedSortableDirective],
+  declarations: [AddBuildComponent, ListBuildComponent, BuildAdvancedSortableDirective, UpdateBuildComponent],
   imports: [
     CommonModule,
     FormsModule,

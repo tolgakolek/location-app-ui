@@ -1,72 +1,71 @@
 <div class="container-fluid">
-  <app-page-title title="Yeni Cihaz" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Cihaz Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <div class="row">
     <div class="col-12">
       <div class="card-box">
-        <h4 class="header-title">Yeni Cihaz Ekle</h4>
+        <h4 class="header-title">Cihaz Düzenle</h4>
         <p class="sub-header">
-          Yeni Cihaz eklemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+          Cihaz düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
         </p>
-        <form>
-          <div _ngcontent-pnh-c6="" class="form-group mb-3">
-            <label>Lütfen Bir Cihaz Türü Seçin</label>
-            <select _ngcontent-pnh-c6="" class="form-control" id="example-select">
-              <option _ngcontent-pnh-c6="" selected="selected" value="0">Tür Seçiniz</option>
-              <option _ngcontent-pnh-c6="">Device 1</option>
-              <option _ngcontent-pnh-c6="">Device 2</option>
-              <option _ngcontent-pnh-c6="">Device 3</option>
-            </select>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
+        <div _ngcontent-pnh-c6="" class="form-group mb-3">
+          <label>Lütfen Bir Cihaz Türü Seçin</label>
+          <select _ngcontent-pnh-c6="" class="form-control" id="example-select" (ngModelChange)="setDeviceTypeId($event)"
+            [ngModelOptions]="{standalone: true}" [ngModel]="deviceTypeId">
+            <option _ngcontent-pnh-c6="" value="0">Lütfen Cihaz Türü Seçiniz</option>
+            <option _ngcontent-pnh-c6="" *ngFor="let deviceType of deviceTypes" [selected]="deviceType.id==deviceTypeId" [ngValue]="deviceType.id">
+              {{ deviceType.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cihaz Adı<span class="text-danger">*</span></label>
+          <input type="text" name="nick" formControlName="deviceName" [value]="device?.name" placeholder="Cihaz adı giriniz" class="form-control"
+            [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
+          <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
+            <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
           </div>
-          <div class="form-group">
-            <label>Cihaz Adı<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Cihaz adı giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
-            </div>
+        </div>
+        <div class="form-group">
+          <label>Teknoloji<span class="text-danger">*</span></label>
+          <input type="text" name="nick" formControlName="deviceTechnology" [value]="device?.technology" placeholder="Teknoloji giriniz" class="form-control"
+            [ngClass]="{'is-invalid': submitControl && basic.deviceTechnology.errors}">
+          <div *ngIf="submitControl && basic.deviceTechnology.errors" class="invalid-feedback">
+            <span *ngIf="basic.deviceTechnology.errors.required">Lütfen Teknoloji giriniz.</span>
           </div>
-          <div class="form-group">
-            <label>Teknoloji<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Özellik giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen Teknoloji giriniz.</span>
-            </div>
+        </div>
+        <div class="form-group">
+          <label>Özellik<span class="text-danger">*</span></label>
+          <input type="text" name="nick" formControlName="deviceDescription" [value]="device?.properties" placeholder="Özellik giriniz" class="form-control"
+            [ngClass]="{'is-invalid': submitControl && basic.deviceDescription.errors}">
+          <div *ngIf="submitControl && basic.deviceDescription.errors" class="invalid-feedback">
+            <span *ngIf="basic.deviceDescription.errors.required">Lütfen özellik adını giriniz.</span>
           </div>
-          <div class="form-group">
-            <label>Özellik<span class="text-danger">*</span></label>
-            <input type="text" name="nick"  placeholder="Özellik giriniz"
-              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.deviceName.errors}">
-            <div *ngIf="submitControl && basic.deviceName.errors" class="invalid-feedback">
-              <span *ngIf="basic.deviceName.errors.required">Lütfen cihaz adını giriniz.</span>
-            </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox checkbox-blue p-1">
+            <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue" [ngModelOptions]="{standalone: true}"
+              type="checkbox">
+            <label for="checkbox6a">
+              <span *ngIf="checkboxValue" title="Cihaz kullanımdadır.">Cihaz Aktif</span>
+              <span *ngIf="!checkboxValue" title="Cihaz kullanımda değildir.">Cihaz Pasif</span>
+            </label>
           </div>
-          <div class="form-group">
-            <div class="checkbox checkbox-blue p-1">
-              <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
-                [ngModelOptions]="{standalone: true}" type="checkbox">
-              <label for="checkbox6a">
-                <span *ngIf="checkboxValue" title="Kampüs kullanımdadır.">Cihaz Aktif</span>
-                <span *ngIf="!checkboxValue" title="Kampüs kullanımda değildir.">Cihaz Pasif</span>
-              </label>
-            </div>
-          </div>
-          <div class="form-group text-center" *ngIf="success">
-            <ngb-alert [dismissible]="false" (close)="success=false"
-              class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
-              Yeni <strong>Cihaz</strong>
-              başarılı bir şekilde eklendi.</ngb-alert>
-          </div>
-          <div class="form-group text-right mb-0">
-            <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
-              Kaydet
-            </button>
-            <button type="reset" class="btn btn-secondary waves-effect waves-light">
-              Temizle
-            </button>
-          </div>
+        </div>
+        <div class="form-group text-center" *ngIf="success">
+          <ngb-alert [dismissible]="false" (close)="success=false"
+            class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+            <strong>Cihaz</strong>
+            başarılı bir şekilde düzenlendi.</ngb-alert>
+        </div>
+        <div class="form-group text-right mb-0">
+          <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+            Kaydet
+          </button>
+          <button type="reset" class="btn btn-secondary waves-effect waves-light">
+            Temizle
+          </button>
+        </div>
         </form>
       </div>
     </div>
-  </div>
   </div>

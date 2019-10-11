@@ -1,9 +1,11 @@
 import { BaseModel } from './base.models';
+import { Campus } from './campus.models';
 
 export class Sites extends BaseModel{
-    site_id?:number;
+    id?:number;
     name:string;
     description:string;
+    campus?:Campus;
     gps:string;
 }
 export interface CampusSearchResult {

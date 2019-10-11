@@ -1,8 +1,9 @@
 import { BaseModel } from './base.models';
+import { DeviceTypes } from './device_types.models';
 
 export class Devices extends BaseModel{
-    device_id?:number;
-    device_type_id?:number;
+    id?:number;
+    deviceType?:DeviceTypes;
     name:string;
     properties:string;
     technology:string;

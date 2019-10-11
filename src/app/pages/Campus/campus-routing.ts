@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListCampusComponent } from './list-campus/list-campus.component';
 import { AddCampusComponent } from './add-campus/addCampus.component';
+import { UpdateCampusComponent } from './update-campus/update-campus.component';
 
 const routes: Routes = [
     {
@@ -11,6 +12,10 @@ const routes: Routes = [
     {
         path: 'list',
         component: ListCampusComponent
+    },
+    {
+        path: 'update/:id',
+        component: UpdateCampusComponent
     }
 ];
 
