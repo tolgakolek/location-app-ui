@@ -42,12 +42,12 @@ export class UpdateRoomTypeComponent implements OnInit {
         id:this.roomTypeId
       };
       this.roomTypeService.update(this.roomType).subscribe(res => {
-        if(res.isSuccess){
+        if(res.success){
           this.success = true;
           setTimeout(() => this.success = false, 500);
           setTimeout(() => this.router.navigate(['/roomType/list']),1000);
         }
-        else if(!res.isSuccess){
+        else if(!res.success){
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
         else{

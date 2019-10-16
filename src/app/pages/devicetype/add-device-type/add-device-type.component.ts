@@ -15,9 +15,9 @@ export class AddDeviceTypeComponent implements OnInit {
   formValidation: FormGroup;
   submitControl: boolean;
   deviceType: DeviceTypes;
-  checkboxValue = false ;
-  success=false;
-  constructor(public formBuilder: FormBuilder,private http:HttpClient, private deviceTypeService:DeviceTypeService) { }
+  checkboxValue = false;
+  success = false;
+  constructor(public formBuilder: FormBuilder, private http: HttpClient, private deviceTypeService: DeviceTypeService) { }
   ngOnInit() {
     this.breadCrumbItems = [{ label: 'Ana Sayfa', path: '/' }, { label: 'Yeni Cihaz Türü', path: '/', active: true }];
 
@@ -33,26 +33,27 @@ export class AddDeviceTypeComponent implements OnInit {
 
   submit() {
     this.submitControl = true;
-    if(this.formValidation.status=="VALID"){
-      this.deviceType={
+    if (this.formValidation.status == "VALID") {
+      this.deviceType = {
         name: this.formValidation.value.deviceTypeName,
-        active :this.checkboxValue
+        active: this.checkboxValue
       };
       this.deviceTypeService.save(this.deviceType).subscribe(res => {
-        if(res.isSuccess){this.success = true;
+        if (res.success) {
+          this.success = true;
           setTimeout(() => this.success = false, 2000);
           setTimeout(() => this.checkboxValue = false, 2000);
           setTimeout(() => this.formValidation.reset(), 2000);
           setTimeout(() => this.submitControl = false, 2000);
         }
-        else if(!res.isSuccess){
+        else if (!res.success) {
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
-        else{
+        else {
           console.log("Bağlanamadı");
         }
       });
-    
+
     }
   }
 }

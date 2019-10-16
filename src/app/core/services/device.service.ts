@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs/Rx";
 import { map } from "rxjs/internal/operators";
 import { Devices } from '../models/devices.models';
-import { DeviceTypeRoutingModule } from 'src/app/pages/devicetype/devicetype-routing';
 import { DEVİCE_PATH } from '../models/path.models';
 
 
@@ -30,8 +29,8 @@ export class DeviceService {
   getById(id): Observable<Devices> {
     return this.http.get<Devices>(DEVİCE_PATH + "{id}?id="+ id);
   }
-  update(device: Devices, deviceTypeId: number): Observable<any> {
-    return this.http.post(DEVİCE_PATH + deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
+  update(device: Devices, deviceTypeId: number,roomId:number): Observable<any> {
+    return this.http.post(DEVİCE_PATH + "deviceType/" + deviceTypeId.toString() + "/room/" + roomId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;
@@ -41,8 +40,8 @@ export class DeviceService {
       }
     ));
   }
-  save(device: Devices, deviceTypeId: number): Observable<any> {
-    return this.http.post(DEVİCE_PATH + deviceTypeId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
+  save(device: Devices, deviceTypeId: number,roomId:number): Observable<any> {
+    return this.http.post(DEVİCE_PATH + "deviceType/" + deviceTypeId.toString() + "/room/" + roomId.toString(), JSON.stringify(device), this.requestOptions).pipe(map(
       res => {
         if (res) {
           return res;

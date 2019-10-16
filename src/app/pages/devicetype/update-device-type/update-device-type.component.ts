@@ -43,13 +43,13 @@ export class UpdateDeviceTypeComponent implements OnInit {
         active :this.checkboxValue
       };
       this.deviceTypeService.update(this.deviceType).subscribe(res => {
-        if(res.isSuccess){
+        if(res.success){
           this.success = true;
           setTimeout(() => this.success = false, 500);
           setTimeout(() => this.router.navigate(['/devicetype/list']),1000);
           ;
         }
-        else if(!res.isSuccess){
+        else if(!res.success){
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
         else{

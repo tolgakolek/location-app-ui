@@ -5,123 +5,104 @@
         <ul class="metismenu" id="side-menu" #sideMenu>
 
             <li class="menu-title">Navigasyon</li>
-
             <li>
-                <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
-                    <i class="fe-plus-square"></i>
-                    <span class="menu-arrow"></span>
-                    <span> Kayıt Ekle </span>
+                <a routerLink="/campus/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-hospital-building"></i>
+                    <span> Campus </span>
                 </a>
-                <ul class="nav-second-level collapse" aria-expanded="false">
-                    <li>
-                        <a routerLink="/campus/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Kampüs</a>
-                    </li>
-                    <li>
-                        <a routerLink="/build/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Bina</a>
-                    </li>
-                    <li>
-                        <a routerLink="/block/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Block</a>
-                    </li>
-                    <li>
-                        <a routerLink="/user/add" routerLinkActive="active" class="side-nav-link-ref">Yeni User</a>
-                    </li>
-                    <li>
-                        <a routerLink="/site/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Site</a>
-                    </li>
-                    <li>
-                        <a routerLink="/subunit/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Alt Birim</a>
-                    </li>
-                    <li>
-                        <a routerLink="/mainunit/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Ana Birim</a>
-                    </li>
-                    <li>
-                        <a routerLink="/floor/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Kat</a>
-                    </li>
-                    <li>
-                        <a routerLink="/device/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Cihaz</a>
-                    </li>
-                    <li>
-                        <a routerLink="/devicetype/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Cihaz Tipi</a>
-                    </li>
-                    <li>
-                        <a routerLink="/department/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Departman</a>
-                    </li>
-                    <li>
-                        <a routerLink="/roomType/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Oda Türü</a>
-                    </li>
-                    <li>
-                        <a routerLink="/room/add" routerLinkActive="active" class="side-nav-link-ref">Yeni Oda</a>
-                    </li>
-                    <li>
-                        <a routerLink="/usercontacttype/add" routerLinkActive="active" class="side-nav-link-ref">Yeni İletisim Türü</a>
-                    </li>
-                    <li>
-                        <a routerLink="/userrole/add" routerLinkActive="active" class="side-nav-link-ref">Kullanıcı Rolü Ekle</a>
-                    </li>
-                    <li>
-                        <a routerLink="/usertitle/add" routerLinkActive="active" class="side-nav-link-ref">Kullanıcı Ünvanı Ekle</a>
-                    </li>
-                </ul>
-
             </li>
             <li>
-                <a href="javascript: void(0);" class="waves-effect" aria-expanded="false">
-                    <i class="fe-align-left"></i>
-                    <span class="menu-arrow"></span>
-                    <span> Listele </span>
+                <a routerLink="/build/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-home-modern"></i>
+                    <span> Bina </span>
                 </a>
-                <ul class="nav-second-level collapse" aria-expanded="false">
-                    <li>
-                        <a routerLink="/campus/list" routerLinkActive="active" class="side-nav-link-ref">Kampüs</a>
-                    </li>
-                    <li>
-                        <a routerLink="/user/list" routerLinkActive="active" class="side-nav-link-ref">User</a>
-                    </li>
-                    <li>
-                        <a routerLink="/site/list" routerLinkActive="active" class="side-nav-link-ref">Site</a>
-                    </li>
-                    <li>
-                        <a routerLink="/build/list" routerLinkActive="active" class="side-nav-link-ref">Bina</a>
-                    </li>
-                    <li>
-                        <a routerLink="/block/list" routerLinkActive="active" class="side-nav-link-ref">Blok</a>
-                    </li>
-                    <li>
-                        <a routerLink="/subunit/list" routerLinkActive="active" class="side-nav-link-ref"> Alt Birim</a>
-                    </li>
-                    <li>
-                        <a routerLink="/mainunit/list" routerLinkActive="active" class="side-nav-link-ref">Ana Birim</a>
-                    </li>
-                    <li>
-                        <a routerLink="/floor/list" routerLinkActive="active" class="side-nav-link-ref">Kat</a>
-                    </li>
-                    <li>
-                        <a routerLink="/device/list" routerLinkActive="active" class="side-nav-link-ref">Cihaz</a>
-                    </li>
-                    <li>
-                        <a routerLink="/devicetype/list" routerLinkActive="active" class="side-nav-link-ref">Cihaz Tipi</a>
-                    </li>
-                    <li>
-                        <a routerLink="/department/list" routerLinkActive="active" class="side-nav-link-ref">Departman</a>
-                    </li>
-                    <li>
-                        <a routerLink="/roomType/list" routerLinkActive="active" class="side-nav-link-ref">Oda Türü</a>
-                    </li>
-                    <li>
-                        <a routerLink="/room/list" routerLinkActive="active" class="side-nav-link-ref">Oda</a>
-                    </li>
-                    <li>
-                        <a routerLink="/usercontacttype/list" routerLinkActive="active" class="side-nav-link-ref">İletisim Türü</a>
-                    </li>
-                    <li>
-                        <a routerLink="/userrole/list" routerLinkActive="active" class="side-nav-link-ref">Kullanıcı Rolleri</a>
-                    </li>
-                    <li>
-                        <a routerLink="/usertitle/list" routerLinkActive="active" class="side-nav-link-ref">Kullanıcı Ünvanları</a>
-                    </li>
-                </ul>
-
             </li>
+            <li>
+                <a routerLink="/user/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class=" mdi mdi-account-multiple"></i>
+                    <span> User </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/site/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-home-city"></i>
+                    <span> Site </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/block/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-city"></i>
+                    <span> Blok </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/subunit/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-briefcase-download"></i>
+                    <span> Alt Birim </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/mainunit/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-briefcase"></i>
+                    <span> Ana Birim </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/floor/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-floor-plan"></i>
+                    <span> Kat </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/device/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-access-point"></i>
+                    <span> Cihaz </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/devicetype/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-access-point"></i>
+                    <span> Cihaz Tipi </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/department/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-table-large"></i>
+                    <span> Departman </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/roomType/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-alpha-r-box-outline"></i>
+                    <span> Oda Türü </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/room/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-alpha-r-circle"></i>
+                    <span> Oda </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/usercontacttype/list" class="waves-effect" routerLinkActive="active"
+                    aria-expanded="false">
+                    <i class="mdi mdi-contacts"></i>
+                    <span> İletişim Türü </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/userrole/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class=" mdi mdi-account-multiple-outline"></i>
+                    <span> Kullanıcı Rolleri </span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/usertitle/list" class="waves-effect" routerLinkActive="active" aria-expanded="false">
+                    <i class="mdi mdi-subtitles"></i>
+                    <span> Kullanıcı Ünvanları </span>
+                </a>
+            </li>
+
 
 
         </ul>

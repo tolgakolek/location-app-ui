@@ -5,10 +5,10 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="header-title">Blok Liste</h4>
-          <p class="text-muted font-13 mb-4">
-
-          </p>
+          <div class="mb-2 d-flex justify-content-between">
+            <h4 class="header-title">Blok Liste</h4>
+            <button type="button" routerLink='/block/add' class="btn btn-success">Yeni Blok</button>
+          </div>
           <div class="row mb-md-2">
             <div class="col-sm-12 col-md-6">
               <div class="dataTables_length" id="tickets-table_length"><label
@@ -47,14 +47,16 @@
                 <tr tr *ngFor="let table of tables$ | async">
                   <td>
                     <ngb-highlight [result]="table.name" [term]="service.searchTerm"></ngb-highlight>
-                  </td><td>
+                  </td>
+                  <td>
                     <ngb-highlight [result]="table.gps" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
                     <ngb-highlight [result]="table.build.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm">
+                    </ngb-highlight>
                   </td>
                   <td>
                     <button type="button" class="tabledit-edit-button btn btn-success"

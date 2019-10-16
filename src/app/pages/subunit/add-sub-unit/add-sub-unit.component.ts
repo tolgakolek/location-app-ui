@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { BlockService } from 'src/app/core/services/block.service';
-import { BuildService } from 'src/app/core/services/build.service';
-import { Block } from 'src/app/core/models/block.models';
 import { MainUnits } from 'src/app/core/models/main_units.models';
 import { SubUnitService } from 'src/app/core/services/sub-unit.service';
 import { MainUnitService } from 'src/app/core/services/man-unit.service';
@@ -52,16 +49,17 @@ export class AddSubUnitComponent implements OnInit {
         name: this.formValidation.value.subUnitName,
         active:this.checkboxValue
       };
+      console.log(this.subUnit);
       this.subUnitService.save(this.subUnit,this.mainUnitId).subscribe(res => {
-        if (res.isSuccess) {
+        if (res.success) {
         this.success = true;
           setTimeout(() => this.success = false, 2000);
           setTimeout(() => this.checkboxValue = false, 2000);
           setTimeout(() => this.formValidation.reset(), 2000);
           setTimeout(() => this.submitControl = false, 2000);
         }
-        else if (!res.isSuccess) {
-          console.log("Sunucu Tarafından Başarısız Oldu.");
+        else if (!res.success) {
+          console.log(res);
         }
         else {
           console.log("Bağlanamadı");

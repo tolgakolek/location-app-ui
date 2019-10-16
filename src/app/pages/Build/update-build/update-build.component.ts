@@ -76,12 +76,12 @@ export class UpdateBuildComponent implements OnInit {
         this.build.campus_id = this.campusId;
       }
       this.buildService.save(this.build, this.campusId, this.siteId).subscribe(res => {
-        if (res.isSuccess) {
+        if (res.success) {
           this.success = true;
           setTimeout(() => this.success = false, 500);
           setTimeout(() => this.router.navigate(['/build/list']), 1000);
         }
-        else if (!res.isSuccess) {
+        else if (!res.success) {
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
         else {

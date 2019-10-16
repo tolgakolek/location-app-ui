@@ -65,14 +65,14 @@ export class AddRoomComponent implements OnInit {
         this.floorId=0;
       }
       this.roomService.save(this.room, this.floorId, this.typeId).subscribe(res => {
-        if (res.isSuccess) {
+        if (res.success) {
         this.success = true;
           setTimeout(() => this.success = false, 2000);
           setTimeout(() => this.checkboxValue = false, 2000);
           setTimeout(() => this.formValidation.reset(), 2000);
           setTimeout(() => this.submitControl = false, 2000);
         }
-        else if (!res.isSuccess) {
+        else if (!res.success) {
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
         else {

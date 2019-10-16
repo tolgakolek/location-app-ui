@@ -79,12 +79,12 @@ export class UpdateFloorComponent implements OnInit {
         this.blockId = 0;
       }
       this.floorService.update(this.floor, this.blockId, this.buildId).subscribe(res => {
-        if (res.isSuccess) {
+        if (res.success) {
           this.success = true;
           setTimeout(() => this.success = false, 500);
           setTimeout(() => this.router.navigate(['/floor/list']), 1000);
         }
-        else if (!res.isSuccess) {
+        else if (!res.success) {
           console.log("Sunucu Tarafından Başarısız Oldu.");
         }
         else {

@@ -20,9 +20,9 @@
           <div class="form-group">
             <label>Alt Birim Adı<span class="text-danger">*</span></label>
             <input type="text" name="nick" formControlName="subUnitName" placeholder="Alt birim adı giriniz" class="form-control"
-              [ngClass]="{'is-invalid': submitControl && basic.mainUnitName.errors}">
-            <div *ngIf="submitControl && basic.mainUnitName.errors" class="invalid-feedback">
-              <span *ngIf="basic.mainUnitName.errors.required">Lütfen Alt Birim adını giriniz.</span>
+              [ngClass]="{'is-invalid': submitControl && basic.subUnitName.errors}">
+            <div *ngIf="submitControl && basic.subUnitName.errors" class="invalid-feedback">
+              <span *ngIf="basic.subUnitName.errors.required">Lütfen Alt Birim adını giriniz.</span>
             </div>
           </div>
           <div class="form-group">
