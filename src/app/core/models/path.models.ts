@@ -10,7 +10,8 @@ export const MAINUNIT_PATH = "http://localhost:8080/mainunit/";
 export const ROOMTYPE_PATH = "http://localhost:8080/roomtype/";
 export const ROOM_PATH = "http://localhost:8080/room/";
 export const SUBUNIT_PATH = "http://localhost:8080/subunit/";
-export const USERCONTACTTYPE_PATH = "http://localhost:8080//usercontacttype/";
+export const USERCONTACTTYPE_PATH = "http://localhost:8080/usercontacttype/";
 export const USERROLE_PATH = "http://localhost:8080//userrole/";
-export const USERTITLE_PATH = "http://localhost:8080//usertitle/";
+export const USERTITLE_PATH = "http://localhost:8080/usertitle/";
+export const USER_PATH = "http://localhost:8080/user/";
 

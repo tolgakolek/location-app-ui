@@ -4,11 +4,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { CookieService } from '../services/cookie.service';
-import { User } from '../models/auth.models';
+import { Usersssss } from '../models/auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-    user: User;
+    user: Usersssss;
 
     constructor(private http: HttpClient, private cookieService: CookieService) {
     }
@@ -16,7 +16,7 @@ export class AuthenticationService {
     /**
      * Returns the current user
      */
-    public currentUser(): User {
+    public currentUser(): Usersssss {
         if (!this.user) {
             this.user = JSON.parse(this.cookieService.getCookie('currentUser'));
         }

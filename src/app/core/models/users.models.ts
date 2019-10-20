@@ -1,13 +1,19 @@
 import { BaseModel } from './base.models';
+import { UserTitle } from './user_title.models';
+import { Department } from './department.models';
+import { UserRole } from './user_role.models';
 
 export class User extends BaseModel{
-    user_id?:number;
+    id?:number;
     name:string;
     email:string;
     gender:number;
-    nation_id?:number;
+    nationId?:number;
     password:string;
-    state:boolean;
+    state?:boolean;
     surname:string;
-    user_title_id?:number;
+    success?:boolean;
+    department?:Department[];
+    userrole?:UserRole[];
+    userTitle?:UserTitle;
 }

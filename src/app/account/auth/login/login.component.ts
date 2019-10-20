@@ -1,9 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
-import { AuthenticationService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserLoginService } from 'src/app/core/services/user-login.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   loading = false;
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router,
-              private authenticationService: AuthenticationService) { }
+    private userLoginService: UserLoginService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     });
 
     // reset login status
-    this.authenticationService.logout();
+    //this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
     // tslint:disable-next-line: no-string-literal
@@ -55,15 +54,19 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.email.value, this.f.password.value)
+    this.userLoginService.getUser(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.error = error;
-          this.loading = false;
+          console.log(this.f.email.value + " " + this.f.password.value);
+          console.log(data);
+          if (data.success) {
+            this.router.navigate(['/dashboards/dashboard-1']);
+          }
+          else {
+            this.error = "Giriş Başarısız";
+            this.loading = false;
+          }
         });
   }
 }

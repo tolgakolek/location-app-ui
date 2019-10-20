@@ -1,3 +1,108 @@
-<p>
-  update-user works!
-</p>
+<div class="container-fluid">
+  <app-page-title title="Kullanıcı Düzenle" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="card-box">
+        <h4 class="header-title">Kullanıcı Düzenle</h4>
+        <p class="sub-header">
+          Kullanıcı düzenlemek için lütfen aşağıdaki bilgileri eksiksiz doldurun.
+        </p>
+        <form (ngSubmit)="submit()" [formGroup]="formValidation">
+          <div _ngcontent-pnh-c6="" class="form-group mb-3">
+            <label>Lütfen Bir Ünvan Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
+              (ngModelChange)="setUserTitleId($event)" [ngModelOptions]="{standalone: true}" [ngModel]="userTitleId">
+              <option _ngcontent-pnh-c6="" [ngValue]="0">Ünvan Seçiniz</option>
+              <option _ngcontent-pnh-c6="" *ngFor="let userTitle of userTitles" [selected]="userTitle.id==userTitleId" [ngValue]="userTitle.id">
+                {{ userTitle.name }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tc Kimlik<span class="text-danger">*</span></label>
+            <input type="text" name="nick" maxlength="11" formControlName="userNationId" placeholder="Tc Kimlik giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userNationId.errors}">
+            <div *ngIf="submitControl && basic.userNationId.errors" class="invalid-feedback">
+              <span *ngIf="basic.userNationId.errors.required">Lütfen Tc Kimlik giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>İsim<span class="text-danger">*</span></label>
+            <input type="text" name="nick" formControlName="userName" placeholder="İsim giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.userName.errors}">
+            <div *ngIf="submitControl && basic.userName.errors" class="invalid-feedback">
+              <span *ngIf="basic.userName.errors.required">Lütfen adını giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Soyisim<span class="text-danger">*</span></label>
+            <input type="text" name="nick" formControlName="userSurname" placeholder="Soyisim giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userSurname.errors}">
+            <div *ngIf="submitControl && basic.userSurname.errors" class="invalid-feedback">
+              <span *ngIf="basic.userSurname.errors.required">Lütfen soyisim giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mail<span class="text-danger">*</span></label>
+            <input type="text" name="nick" formControlName="userEmail" placeholder="E-mail giriniz" class="form-control"
+              [ngClass]="{'is-invalid': submitControl && basic.userEmail.errors}">
+            <div *ngIf="submitControl && basic.userEmail.errors" class="invalid-feedback">
+              <span *ngIf="basic.userEmail.errors.required">Lütfen E-mail giriniz.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Şifre<span class="text-danger">*</span></label>
+            <input type="password" name="nick" formControlName="userPassword" placeholder="Şifre giriniz"
+              class="form-control" [ngClass]="{'is-invalid': submitControl && basic.userPassword.errors}">
+            <div *ngIf="submitControl && basic.userPassword.errors" class="invalid-feedback">
+              <span *ngIf="basic.userPassword.errors.required">Lütfen şifre giriniz.</span>
+            </div>
+          </div>
+          <div _ngcontent-pnh-c6="" class="form-group mb-3">
+            <label>Lütfen Cinsiyet Seçin</label>
+            <select _ngcontent-pnh-c6="" class="form-control" id="genderSelect" (ngModelChange)="setGenderId($event)"
+              [ngModelOptions]="{standalone: true}" [ngModel]="genderId">
+              <option _ngcontent-pnh-c6="" [ngValue]="-1">Cinsiyet Seçiniz</option>
+              <option _ngcontent-pnh-c6="" [ngValue]="1">Erkek</option>
+              <option _ngcontent-pnh-c6="" [ngValue]="0">Kadın</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label>Kullanıcı Yetkisi Seçiniz</label>
+            <ng-select [multiple]="true" [(ngModel)]="selectedRole" (ngModelChange)="setRole($event)" [ngModelOptions]="{standalone: true}">
+              <ng-option *ngFor="let role of roles" [value]="role">{{role.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="form-group mb-3">
+            <label>Kullanıcı Departmanı Seçiniz</label>
+            <ng-select [multiple]="true" [(ngModel)]="selectedDepartment" (ngModelChange)="setDepartment($event)" [ngModelOptions]="{standalone: true}">
+              <ng-option *ngFor="let department of departments" [value]="department" >{{department.name}}</ng-option>
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <div class="checkbox checkbox-blue p-1">
+              <input id="checkbox6a" name="checkboxBlue" [(ngModel)]="checkboxValue"
+                [ngModelOptions]="{standalone: true}" type="checkbox">
+              <label for="checkbox6a">
+                <span *ngIf="checkboxValue" title="Kullanıcı kullanımdadır.">Kullanıcı Aktif</span>
+                <span *ngIf="!checkboxValue" title="Kullanıcı kullanımda değildir.">Kullanıcı Pasif</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group text-center" *ngIf="success">
+            <ngb-alert [dismissible]="false" (close)="success=false"
+              class="alert alert-success bg-success text-black border-0" type="success" data-auto-dismiss>
+              <strong>Kullanıcı</strong>
+              başarılı bir şekilde düzenlendi.</ngb-alert>
+          </div>
+          <div class="form-group text-right mb-0">
+            <button class="btn btn-info waves-effect waves-light mr-1" type="submit">
+              Kaydet
+            </button>
+            <button type="reset" class="btn btn-secondary waves-effect waves-light">
+              Temizle
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
