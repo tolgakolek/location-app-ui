@@ -81,8 +81,8 @@ export class AddUserComponent implements OnInit {
         gender: this.genderId,
         nationId: this.formValidation.value.userNationId,
         active: this.checkboxValue,
-        department:this.selectDepartment,
-        userrole:this.selectRole
+        departments:this.selectDepartment,
+        roles:this.selectRole
       };
       console.log(this.user);
       this.userService.save(this.user, this.userTitleId).subscribe(res => {

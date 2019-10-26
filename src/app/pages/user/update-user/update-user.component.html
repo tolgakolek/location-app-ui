@@ -13,7 +13,8 @@
             <select _ngcontent-pnh-c6="" class="form-control" id="example-select"
               (ngModelChange)="setUserTitleId($event)" [ngModelOptions]="{standalone: true}" [ngModel]="userTitleId">
               <option _ngcontent-pnh-c6="" [ngValue]="0">Ünvan Seçiniz</option>
-              <option _ngcontent-pnh-c6="" *ngFor="let userTitle of userTitles" [selected]="userTitle.id==userTitleId" [ngValue]="userTitle.id">
+              <option _ngcontent-pnh-c6="" *ngFor="let userTitle of userTitles" [selected]="userTitle.id==userTitleId"
+                [ngValue]="userTitle.id">
                 {{ userTitle.name }}</option>
             </select>
           </div>
@@ -68,14 +69,17 @@
           </div>
           <div class="form-group mb-3">
             <label>Kullanıcı Yetkisi Seçiniz</label>
-            <ng-select [multiple]="true" [(ngModel)]="selectedRole" (ngModelChange)="setRole($event)" [ngModelOptions]="{standalone: true}">
-              <ng-option *ngFor="let role of roles" [value]="role">{{role.name}}</ng-option>
+            <ng-select [multiple]="true" [(ngModel)]="selectedRole" (ngModelChange)="setRole($event)"
+              [ngModelOptions]="{standalone: true}">
+              <ng-option *ngFor="let role of roles"  [value]="role.id">{{role.name}}</ng-option>
             </ng-select>
           </div>
           <div class="form-group mb-3">
             <label>Kullanıcı Departmanı Seçiniz</label>
-            <ng-select [multiple]="true" [(ngModel)]="selectedDepartment" (ngModelChange)="setDepartment($event)" [ngModelOptions]="{standalone: true}">
-              <ng-option *ngFor="let department of departments" [value]="department" >{{department.name}}</ng-option>
+            <ng-select [multiple]="true" [(ngModel)]="selectedDepartment" 
+            [closeOnSelect]="false" [searchable]="false" (ngModelChange)="setDepartment($event)"
+              [ngModelOptions]="{standalone: true}">
+              <ng-option *ngFor="let department of departments" [value]="department.id">{{department.name}}</ng-option>
             </ng-select>
           </div>
           <div class="form-group">

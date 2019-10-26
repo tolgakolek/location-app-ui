@@ -61,16 +61,16 @@
                     <ngb-highlight [result]="table.block?.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.block?.build.name" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table.block?.build?.name" [term]="service.searchTerm"></ngb-highlight>
                     <ngb-highlight [result]="table.build?.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.block?.build.campus.name" [term]="service.searchTerm">
+                    <ngb-highlight [result]="table.block?.build?.campus?.name" [term]="service.searchTerm">
                     </ngb-highlight>
-                    <ngb-highlight [result]="table.build?.campus.name" [term]="service.searchTerm"></ngb-highlight>
+                    <ngb-highlight [result]="table.build?.campus?.name" [term]="service.searchTerm"></ngb-highlight>
                   </td>
                   <td>
-                    <ngb-highlight [result]="table.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm">
+                    <ngb-highlight [result]="table?.active ? 'Aktif' : 'Pasif'" [term]="service.searchTerm">
                     </ngb-highlight>
                   </td>
                   <td>

@@ -51,6 +51,7 @@ export class UpdateUserComponent implements OnInit {
     })
     this.departmentService.getAll().subscribe(data => {
       this.departments = data;
+      this.selectDepartment=[1];
     })
     this.getUserById();
     this.submitControl = false;
@@ -69,7 +70,7 @@ export class UpdateUserComponent implements OnInit {
     this.selectRole = role;
   }
   setDepartment(department: any) {
-    this.selectDepartment = department;
+    //this.selectDepartment = department;
   }
   submit() {
     this.submitControl = true;
@@ -82,8 +83,8 @@ export class UpdateUserComponent implements OnInit {
         gender: this.genderId,
         nationId: this.formValidation.value.userNationId,
         active: this.checkboxValue,
-        department: this.selectDepartment,
-        userrole: this.selectRole,
+        //departments: this.selectDepartment,
+        roles: this.selectRole,
         id: this.userId
       };
       this.userService.update(this.user, this.userTitleId).subscribe(res => {
@@ -110,9 +111,13 @@ export class UpdateUserComponent implements OnInit {
         this.userTitleId = user.userTitle.id;
         this.checkboxValue = user.active;
         this.genderId = user.gender;
-        console.log(user);
-        console.log(user.department);
-        console.log(user.department);
+        //this.selectDepartment = user.departments;
+        this.selectRole = user.roles;
+        /*
+        for (let i = 0; user.departments[i] != null; i++) {
+          this.selectDepartment.push(user.departments[i].id);
+        }*/
+        console.log(this.selectDepartment);
         this.formValidation.setValue({
           userName: user.name,
           userSurname: user.surname,

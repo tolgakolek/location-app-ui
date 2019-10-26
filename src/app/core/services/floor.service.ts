@@ -24,7 +24,7 @@ export class FloorService {
     return this.http.get<Floors[]>(FLOOR_PATH + "list/");
   }
   getById(id): Observable<Floors> {
-    return this.http.get<Floors>(FLOOR_PATH +"{/"+ id);
+    return this.http.get<Floors>(FLOOR_PATH +"/"+ id);
   }
   update(floor: Floors, blookId: number, buildId: number): Observable<any> {
     return this.http.post(FLOOR_PATH + "block/" + blookId.toString() + "/build/" + buildId.toString(), JSON.stringify(floor), this.requestOptions).pipe(map(

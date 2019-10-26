@@ -13,7 +13,7 @@ export class User extends BaseModel{
     state?:boolean;
     surname:string;
     success?:boolean;
-    department?:Department[];
-    userrole?:UserRole[];
+    departments?:Department[];
+    roles?:UserRole[];
     userTitle?:UserTitle;
 }
